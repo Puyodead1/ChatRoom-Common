@@ -5,15 +5,20 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-public class ChatRoomLogger {
+public class ChatRoomLogger extends Logger {
 
-    public ConsoleReader consoleReader;
-    public Logger logger;
+    private final LogDispatcher dispatcher = new LogDispatcher(this);
+    private final ConsoleReader consoleReader;
 
     public ChatRoomLogger(String name, String filePattern) throws IOException {
+        super(name, null);
+        setLevel(Level.ALL);
+
         System.setProperty("library.jansi.version", name);
 
         AnsiConsole.systemInstall();
@@ -21,17 +26,38 @@ public class ChatRoomLogger {
         consoleReader.setExpandEvents(false);
         consoleReader.setHandleUserInterrupt(true);
 
-        logger = new CustomLogger(name, filePattern, consoleReader);
-        JDK14LoggerFactory.LOGGER = logger;
-        System.setErr(new PrintStream(new LoggingOutputStream(logger, Level.SEVERE), true));
-        System.setOut(new PrintStream(new LoggingOutputStream(logger, Level.INFO), true));
+        JDK14LoggerFactory.LOGGER = this;
+        System.setErr(new PrintStream(new LoggingOutputStream(this, Level.SEVERE), true));
+        System.setOut(new PrintStream(new LoggingOutputStream(this, Level.INFO), true));
+
+        try {
+            FileHandler fileHandler = new FileHandler(filePattern, 1 << 24, 8, true);
+            fileHandler.setLevel(Level.parse(System.getProperty("optic_fusion1.chatroom.client.file-log-level", "INFO")));
+            fileHandler.setFormatter(new ConciseFormatter(false));
+            addHandler(fileHandler);
+
+            ColoredWriter consoleHandler = new ColoredWriter(consoleReader);
+            consoleHandler.setLevel(Level.parse(System.getProperty("optic_fusion1.chatroom.client.console-log-level", "INFO")));
+            consoleHandler.setFormatter(new ConciseFormatter(true));
+            addHandler(consoleHandler);
+        } catch (IOException ex) {
+            System.err.println("Could not register logger!");
+            ex.printStackTrace();
+        }
+
+        dispatcher.start();
+    }
+
+    @Override
+    public void log(LogRecord record) {
+        dispatcher.queue(record);
+    }
+
+    void doLog(LogRecord record) {
+        super.log(record);
     }
 
     public ConsoleReader getConsoleReader() {
         return consoleReader;
-    }
-
-    public Logger getLogger() {
-        return logger;
     }
 }

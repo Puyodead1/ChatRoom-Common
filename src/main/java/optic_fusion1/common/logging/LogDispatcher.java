@@ -38,10 +38,10 @@ import java.util.logging.LogRecord;
 
 public class LogDispatcher extends Thread {
 
-    private final CustomLogger logger;
+    private final ChatRoomLogger logger;
     private final BlockingDeque<LogRecord> queue = new LinkedBlockingDeque<>();
 
-    public LogDispatcher(CustomLogger logger) {
+    public LogDispatcher(ChatRoomLogger logger) {
         super("ChatRoom Client Logger Thread");
         this.logger = logger;
     }
