@@ -69,4 +69,8 @@ public class LogDispatcher extends Thread {
             queue.add(record);
         }
     }
+
+    public BlockingDeque<LogRecord> getQueue() {
+        return queue;
+    }
 }

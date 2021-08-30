@@ -10,9 +10,15 @@ public class TestMain {
             logger.info("Info");
             logger.warning("Warning");
             logger.severe("Severe");
+
+            // hack so stuff prints. without this the program terminates before anything is printed
+            logger.getConsoleReader().readLine("Press any key to exit");
+            logger.shutdown();
+
+            System.exit(0);
         } catch (Exception e) {
+            System.err.println("Failed to create logger!");
             e.printStackTrace();
         }
-
     }
 }

@@ -5,10 +5,7 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 public class ChatRoomLogger extends Logger {
 
@@ -46,6 +43,15 @@ public class ChatRoomLogger extends Logger {
         }
 
         dispatcher.start();
+    }
+    /**
+     * Interrupts threads and stuff
+     */
+    public void shutdown() {
+        dispatcher.interrupt();
+        for (Handler handler : getHandlers()) {
+            handler.close();
+        }
     }
 
     @Override
