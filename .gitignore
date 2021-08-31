@@ -131,3 +131,5 @@ dependency-reduced-pom.xml
 
 # Manifest
 META-INF/
+
+*.log.*
