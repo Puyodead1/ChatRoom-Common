@@ -42,7 +42,7 @@ import java.util.logging.Logger;
 @RequiredArgsConstructor
 public class LoggingOutputStream extends ByteArrayOutputStream {
 
-    private static final String separator = System.getProperty("line.separator");
+    private static final String SEPARATOR = System.getProperty("line.separator");
     /*========================================================================*/
     private final Logger logger;
     private final Level level;
@@ -51,7 +51,7 @@ public class LoggingOutputStream extends ByteArrayOutputStream {
     public void flush() throws IOException {
         String contents = toString(Charsets.UTF_8.name());
         super.reset();
-        if (!contents.isEmpty() && !contents.equals(separator)) {
+        if (!contents.isEmpty() && !contents.equals(SEPARATOR)) {
             logger.logp(level, "", "", contents);
         }
     }

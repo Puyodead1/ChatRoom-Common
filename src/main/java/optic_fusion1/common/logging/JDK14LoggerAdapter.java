@@ -64,6 +64,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      *
      * @return True if this Logger is enabled for level FINEST, false otherwise.
      */
+    @Override
     public boolean isTraceEnabled() {
         return logger.isLoggable(Level.FINEST);
     }
@@ -74,6 +75,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param msg
      *          - the message object to be logged
      */
+    @Override
     public void trace(String msg) {
         if (logger.isLoggable(Level.FINEST)) {
             log(SELF, Level.FINEST, msg, null);
@@ -94,6 +96,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg
      *          the argument
      */
+    @Override
     public void trace(String format, Object arg) {
         if (logger.isLoggable(Level.FINEST)) {
             FormattingTuple ft = MessageFormatter.format(format, arg);
@@ -117,6 +120,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg2
      *          the second argument
      */
+    @Override
     public void trace(String format, Object arg1, Object arg2) {
         if (logger.isLoggable(Level.FINEST)) {
             FormattingTuple ft = MessageFormatter.format(format, arg1, arg2);
@@ -138,6 +142,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param argArray
      *          an array of arguments
      */
+    @Override
     public void trace(String format, Object... argArray) {
         if (logger.isLoggable(Level.FINEST)) {
             FormattingTuple ft = MessageFormatter.arrayFormat(format, argArray);
@@ -153,6 +158,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param t
      *          the exception (throwable) to log
      */
+    @Override
     public void trace(String msg, Throwable t) {
         if (logger.isLoggable(Level.FINEST)) {
             log(SELF, Level.FINEST, msg, t);
@@ -164,6 +170,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      *
      * @return True if this Logger is enabled for level FINE, false otherwise.
      */
+    @Override
     public boolean isDebugEnabled() {
         return logger.isLoggable(Level.FINE);
     }
@@ -174,6 +181,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param msg
      *          - the message object to be logged
      */
+    @Override
     public void debug(String msg) {
         if (logger.isLoggable(Level.FINE)) {
             log(SELF, Level.FINE, msg, null);
@@ -193,6 +201,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg
      *          the argument
      */
+    @Override
     public void debug(String format, Object arg) {
         if (logger.isLoggable(Level.FINE)) {
             FormattingTuple ft = MessageFormatter.format(format, arg);
@@ -216,6 +225,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg2
      *          the second argument
      */
+    @Override
     public void debug(String format, Object arg1, Object arg2) {
         if (logger.isLoggable(Level.FINE)) {
             FormattingTuple ft = MessageFormatter.format(format, arg1, arg2);
@@ -237,6 +247,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param argArray
      *          an array of arguments
      */
+    @Override
     public void debug(String format, Object... argArray) {
         if (logger.isLoggable(Level.FINE)) {
             FormattingTuple ft = MessageFormatter.arrayFormat(format, argArray);
@@ -252,6 +263,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param t
      *          the exception (throwable) to log
      */
+    @Override
     public void debug(String msg, Throwable t) {
         if (logger.isLoggable(Level.FINE)) {
             log(SELF, Level.FINE, msg, t);
@@ -263,6 +275,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      *
      * @return True if this Logger is enabled for the INFO level, false otherwise.
      */
+    @Override
     public boolean isInfoEnabled() {
         return logger.isLoggable(Level.INFO);
     }
@@ -273,6 +286,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param msg
      *          - the message object to be logged
      */
+    @Override
     public void info(String msg) {
         if (logger.isLoggable(Level.INFO)) {
             log(SELF, Level.INFO, msg, null);
@@ -292,6 +306,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg
      *          the argument
      */
+    @Override
     public void info(String format, Object arg) {
         if (logger.isLoggable(Level.INFO)) {
             FormattingTuple ft = MessageFormatter.format(format, arg);
@@ -315,6 +330,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg2
      *          the second argument
      */
+    @Override
     public void info(String format, Object arg1, Object arg2) {
         if (logger.isLoggable(Level.INFO)) {
             FormattingTuple ft = MessageFormatter.format(format, arg1, arg2);
@@ -336,6 +352,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param argArray
      *          an array of arguments
      */
+    @Override
     public void info(String format, Object... argArray) {
         if (logger.isLoggable(Level.INFO)) {
             FormattingTuple ft = MessageFormatter.arrayFormat(format, argArray);
@@ -352,6 +369,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param t
      *          the exception (throwable) to log
      */
+    @Override
     public void info(String msg, Throwable t) {
         if (logger.isLoggable(Level.INFO)) {
             log(SELF, Level.INFO, msg, t);
@@ -364,6 +382,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @return True if this Logger is enabled for the WARNING level, false
      *         otherwise.
      */
+    @Override
     public boolean isWarnEnabled() {
         return logger.isLoggable(Level.WARNING);
     }
@@ -374,6 +393,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param msg
      *          - the message object to be logged
      */
+    @Override
     public void warn(String msg) {
         if (logger.isLoggable(Level.WARNING)) {
             log(SELF, Level.WARNING, msg, null);
@@ -394,6 +414,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg
      *          the argument
      */
+    @Override
     public void warn(String format, Object arg) {
         if (logger.isLoggable(Level.WARNING)) {
             FormattingTuple ft = MessageFormatter.format(format, arg);
@@ -417,6 +438,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg2
      *          the second argument
      */
+    @Override
     public void warn(String format, Object arg1, Object arg2) {
         if (logger.isLoggable(Level.WARNING)) {
             FormattingTuple ft = MessageFormatter.format(format, arg1, arg2);
@@ -438,6 +460,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param argArray
      *          an array of arguments
      */
+    @Override
     public void warn(String format, Object... argArray) {
         if (logger.isLoggable(Level.WARNING)) {
             FormattingTuple ft = MessageFormatter.arrayFormat(format, argArray);
@@ -454,6 +477,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param t
      *          the exception (throwable) to log
      */
+    @Override
     public void warn(String msg, Throwable t) {
         if (logger.isLoggable(Level.WARNING)) {
             log(SELF, Level.WARNING, msg, t);
@@ -465,6 +489,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      *
      * @return True if this Logger is enabled for level SEVERE, false otherwise.
      */
+    @Override
     public boolean isErrorEnabled() {
         return logger.isLoggable(Level.SEVERE);
     }
@@ -475,6 +500,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param msg
      *          - the message object to be logged
      */
+    @Override
     public void error(String msg) {
         if (logger.isLoggable(Level.SEVERE)) {
             log(SELF, Level.SEVERE, msg, null);
@@ -495,6 +521,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg
      *          the argument
      */
+    @Override
     public void error(String format, Object arg) {
         if (logger.isLoggable(Level.SEVERE)) {
             FormattingTuple ft = MessageFormatter.format(format, arg);
@@ -518,6 +545,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arg2
      *          the second argument
      */
+    @Override
     public void error(String format, Object arg1, Object arg2) {
         if (logger.isLoggable(Level.SEVERE)) {
             FormattingTuple ft = MessageFormatter.format(format, arg1, arg2);
@@ -539,6 +567,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param arguments
      *          an array of arguments
      */
+    @Override
     public void error(String format, Object... arguments) {
         if (logger.isLoggable(Level.SEVERE)) {
             FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
@@ -555,6 +584,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
      * @param t
      *          the exception (throwable) to log
      */
+    @Override
     public void error(String msg, Throwable t) {
         if (logger.isLoggable(Level.SEVERE)) {
             log(SELF, Level.SEVERE, msg, t);
@@ -622,6 +652,7 @@ public final class JDK14LoggerAdapter extends MarkerIgnoringBase implements Loca
         }
     }
 
+    @Override
     public void log(Marker marker, String callerFQCN, int level, String message, Object[] argArray, Throwable t) {
         Level julLevel = slf4jLevelIntToJULLevel(level);
         // the logger.isLoggable check avoids the unconditional

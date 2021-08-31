@@ -44,7 +44,7 @@ public class JDK14LoggerFactory implements ILoggerFactory {
     public static java.util.logging.Logger LOGGER; // BungeeCord
 
     public JDK14LoggerFactory() {
-        loggerMap = new ConcurrentHashMap<String, Logger>();
+        loggerMap = new ConcurrentHashMap<>();
         // ensure jul initialization. see SLF4J-359
         // note that call to java.util.logging.LogManager.getLogManager() fails on the Google App Engine platform. See SLF4J-363
         java.util.logging.Logger.getLogger("");
@@ -55,6 +55,7 @@ public class JDK14LoggerFactory implements ILoggerFactory {
      *
      * @see org.slf4j.ILoggerFactory#getLogger(java.lang.String)
      */
+    @Override
     public Logger getLogger(String name) {
         // the root logger is called "" in JUL
         if (name.equalsIgnoreCase(Logger.ROOT_LOGGER_NAME)) {
