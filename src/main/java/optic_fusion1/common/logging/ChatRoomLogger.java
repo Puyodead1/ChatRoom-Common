@@ -1,69 +1,33 @@
 package optic_fusion1.common.logging;
 
-import jline.console.ConsoleReader;
-import org.fusesource.jansi.AnsiConsole;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.io.IoBuilder;
 
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.logging.*;
+import java.util.logging.Handler;
+import java.util.logging.Logger;
 
-public class ChatRoomLogger extends Logger {
+public final class ChatRoomLogger {
 
-    private final LogDispatcher dispatcher = new LogDispatcher(this);
-    private final ConsoleReader consoleReader;
+    private ChatRoomLogger() {
 
-    public ChatRoomLogger(String name, String filePattern) throws IOException {
-        super(name, null);
-        setLevel(Level.ALL);
+    }
 
-        System.setProperty("library.jansi.version", name);
+    public static Logger create() {
+        org.apache.logging.log4j.Logger redirect = LogManager.getRootLogger();
+        System.setOut(IoBuilder.forLogger(redirect).setLevel(Level.INFO).buildPrintStream());
+        System.setErr(IoBuilder.forLogger(redirect).setLevel(Level.ERROR).buildPrintStream());
 
-        AnsiConsole.systemInstall();
-        consoleReader = new ConsoleReader();
-        consoleReader.setExpandEvents(false);
-        consoleReader.setHandleUserInterrupt(true);
+        Logger root = Logger.getLogger("");
+        root.setUseParentHandlers(false);
 
-        JDK14LoggerFactory.LOGGER = this;
-        System.setErr(new PrintStream(new LoggingOutputStream(this, Level.SEVERE), true));
-        System.setOut(new PrintStream(new LoggingOutputStream(this, Level.INFO), true));
-
-        try {
-            FileHandler fileHandler = new FileHandler(filePattern, 1 << 24, 8, true);
-            fileHandler.setLevel(Level.parse(System.getProperty("optic_fusion1.chatroom.client.file-log-level", "INFO")));
-            fileHandler.setFormatter(new ConciseFormatter(false));
-            addHandler(fileHandler);
-
-            ColoredWriter consoleHandler = new ColoredWriter(consoleReader);
-            consoleHandler.setLevel(Level.parse(System.getProperty("optic_fusion1.chatroom.client.console-log-level", "INFO")));
-            consoleHandler.setFormatter(new ConciseFormatter(true));
-            addHandler(consoleHandler);
-        } catch (IOException ex) {
-            System.err.println("Could not register logger!");
-            ex.printStackTrace();
+        for(Handler handler : root.getHandlers()) {
+            root.removeHandler(handler);
         }
 
-        dispatcher.start();
-    }
-    /**
-     * Interrupts threads and stuff
-     */
-    public void shutdown() {
-        dispatcher.interrupt();
-        for (Handler handler : getHandlers()) {
-            handler.close();
-        }
-    }
+        root.setLevel(java.util.logging.Level.ALL);
+        root.addHandler(new Log4JLogHandler());
 
-    @Override
-    public void log(LogRecord record) {
-        dispatcher.queue(record);
-    }
-
-    void doLog(LogRecord record) {
-        super.log(record);
-    }
-
-    public ConsoleReader getConsoleReader() {
-        return consoleReader;
+        return Logger.getLogger("ChatRoot");
     }
 }
