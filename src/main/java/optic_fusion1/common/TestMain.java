@@ -1,24 +1,27 @@
 package optic_fusion1.common;
 
+import optic_fusion1.common.logging.ChatRoomConsole;
 import optic_fusion1.common.logging.ChatRoomLogger;
+import org.fusesource.jansi.AnsiConsole;
+
+import java.util.logging.Logger;
 
 public class TestMain {
 
+    private static Logger logger = null;
+
     public static void main(String[] args) {
-        try{
-            ChatRoomLogger logger = new ChatRoomLogger("ChatRoomCommon", "common.log");
-            logger.info("Info");
-            logger.warning("Warning");
-            logger.severe("Severe");
+        System.setProperty("library.jansi.version", "ChatRoom");
+        AnsiConsole.systemInstall();
 
-            // hack so stuff prints. without this the program terminates before anything is printed
-            logger.getConsoleReader().readLine("Press any key to exit");
-            logger.shutdown();
+        logger = ChatRoomLogger.create();
+        Thread thread = new Thread(() -> new ChatRoomConsole().start());
+        thread.start();
 
-            System.exit(0);
-        } catch (Exception e) {
-            System.err.println("Failed to create logger!");
-            e.printStackTrace();
-        }
+        Runtime.getRuntime().addShutdownHook(new Thread(thread::interrupt));
+
+        logger.info("TEST");
+        logger.severe("TEST");
+        logger.warning("TEST");
     }
 }
