@@ -32,6 +32,9 @@ message ErrorPacket {
   enum Type {
     CONNECTION_REFUSED = 0;
     UNKNOWN = 1;
+    SESSION = 2;
+    RSA_KEY_PAIR = 3;
+    VALIDATION = 4;
   }
 
   required Type error_type = 1;

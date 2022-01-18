@@ -62,4 +62,11 @@ public class RSAUtils {
         X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(encodedPublicKey);
         return factory.generatePublic(publicKeySpec);
     }
+
+    public static boolean verifySignature(byte[] signature, PublicKey publicKey, byte[] data) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, SignatureException {
+        Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
+        sig.initVerify(publicKey);
+        sig.update(data);
+        return sig.verify(signature);
+    }
 }

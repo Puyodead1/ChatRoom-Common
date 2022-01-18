@@ -56,21 +56,22 @@ public final class ChatRoomProtocol {
       "\010hmac_key\030\003 \002(\014\022\026\n\016rsa_public_key\030\004 \002(\014\"" +
       "_\n\nPongPacket\0221\n\027server_protocol_version" +
       "\030\001 \002(\0162\020.ProtocolVersion\022\036\n\026connected_cl" +
-      "ient_count\030\002 \002(\005\"v\n\013ErrorPacket\022%\n\nerror" +
-      "_type\030\001 \002(\0162\021.ErrorPacket.Type\022\023\n\013descri" +
-      "ption\030\002 \002(\t\"+\n\004Type\022\026\n\022CONNECTION_REFUSE" +
-      "D\020\000\022\013\n\007UNKNOWN\020\001\"\325\002\n\006Packet\022!\n\013packet_ty" +
-      "pe\030\001 \002(\0162\014.Packet.Type\022\021\n\tsignature\030\002 \001(" +
-      "\014\0223\n\026handshake_request_data\030\003 \001(\0132\021.Hand" +
-      "shakeRequestH\000\0225\n\027handshake_response_dat" +
-      "a\030\004 \001(\0132\022.HandshakeResponseH\000\022 \n\tpong_da" +
-      "ta\030\005 \001(\0132\013.PongPacketH\000\022\"\n\nerror_data\030\006 " +
-      "\001(\0132\014.ErrorPacketH\000\"T\n\004Type\022\025\n\021HANDSHAKE" +
-      "_REQUEST\020\000\022\026\n\022HANDSHAKE_RESPONSE\020\001\022\010\n\004PI" +
-      "NG\020\002\022\010\n\004PONG\020\003\022\t\n\005ERROR\020\004B\r\n\013packet_data" +
-      "* \n\017ProtocolVersion\022\r\n\tVERSION_1\020\001B1\n\033op" +
-      "tic_fusion1.common.protosB\020ChatRoomProto" +
-      "colP\001"
+      "ient_count\030\002 \002(\005\"\245\001\n\013ErrorPacket\022%\n\nerro" +
+      "r_type\030\001 \002(\0162\021.ErrorPacket.Type\022\023\n\013descr" +
+      "iption\030\002 \002(\t\"Z\n\004Type\022\026\n\022CONNECTION_REFUS" +
+      "ED\020\000\022\013\n\007UNKNOWN\020\001\022\013\n\007SESSION\020\002\022\020\n\014RSA_KE" +
+      "Y_PAIR\020\003\022\016\n\nVALIDATION\020\004\"\325\002\n\006Packet\022!\n\013p" +
+      "acket_type\030\001 \002(\0162\014.Packet.Type\022\021\n\tsignat" +
+      "ure\030\002 \001(\014\0223\n\026handshake_request_data\030\003 \001(" +
+      "\0132\021.HandshakeRequestH\000\0225\n\027handshake_resp" +
+      "onse_data\030\004 \001(\0132\022.HandshakeResponseH\000\022 \n" +
+      "\tpong_data\030\005 \001(\0132\013.PongPacketH\000\022\"\n\nerror" +
+      "_data\030\006 \001(\0132\014.ErrorPacketH\000\"T\n\004Type\022\025\n\021H" +
+      "ANDSHAKE_REQUEST\020\000\022\026\n\022HANDSHAKE_RESPONSE" +
+      "\020\001\022\010\n\004PING\020\002\022\010\n\004PONG\020\003\022\t\n\005ERROR\020\004B\r\n\013pac" +
+      "ket_data* \n\017ProtocolVersion\022\r\n\tVERSION_1" +
+      "\020\001B1\n\033optic_fusion1.common.protosB\020ChatR" +
+      "oomProtocolP\001"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -114,6 +114,18 @@ private static final long serialVersionUID = 0L;
      * <code>UNKNOWN = 1;</code>
      */
     UNKNOWN(1),
+    /**
+     * <code>SESSION = 2;</code>
+     */
+    SESSION(2),
+    /**
+     * <code>RSA_KEY_PAIR = 3;</code>
+     */
+    RSA_KEY_PAIR(3),
+    /**
+     * <code>VALIDATION = 4;</code>
+     */
+    VALIDATION(4),
     ;
 
     /**
@@ -124,6 +136,18 @@ private static final long serialVersionUID = 0L;
      * <code>UNKNOWN = 1;</code>
      */
     public static final int UNKNOWN_VALUE = 1;
+    /**
+     * <code>SESSION = 2;</code>
+     */
+    public static final int SESSION_VALUE = 2;
+    /**
+     * <code>RSA_KEY_PAIR = 3;</code>
+     */
+    public static final int RSA_KEY_PAIR_VALUE = 3;
+    /**
+     * <code>VALIDATION = 4;</code>
+     */
+    public static final int VALIDATION_VALUE = 4;
 
 
     public final int getNumber() {
@@ -148,6 +172,9 @@ private static final long serialVersionUID = 0L;
       switch (value) {
         case 0: return CONNECTION_REFUSED;
         case 1: return UNKNOWN;
+        case 2: return SESSION;
+        case 3: return RSA_KEY_PAIR;
+        case 4: return VALIDATION;
         default: return null;
       }
     }
