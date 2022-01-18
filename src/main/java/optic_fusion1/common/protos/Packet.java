@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private Packet() {
     packetType_ = 0;
+    signature_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -63,8 +64,13 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
+            bitField0_ |= 0x00000002;
+            signature_ = input.readBytes();
+            break;
+          }
+          case 26: {
             optic_fusion1.common.protos.HandshakeRequest.Builder subBuilder = null;
-            if (packetDataCase_ == 2) {
+            if (packetDataCase_ == 3) {
               subBuilder = ((optic_fusion1.common.protos.HandshakeRequest) packetData_).toBuilder();
             }
             packetData_ =
@@ -73,12 +79,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((optic_fusion1.common.protos.HandshakeRequest) packetData_);
               packetData_ = subBuilder.buildPartial();
             }
-            packetDataCase_ = 2;
+            packetDataCase_ = 3;
             break;
           }
-          case 26: {
+          case 34: {
             optic_fusion1.common.protos.HandshakeResponse.Builder subBuilder = null;
-            if (packetDataCase_ == 3) {
+            if (packetDataCase_ == 4) {
               subBuilder = ((optic_fusion1.common.protos.HandshakeResponse) packetData_).toBuilder();
             }
             packetData_ =
@@ -87,12 +93,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((optic_fusion1.common.protos.HandshakeResponse) packetData_);
               packetData_ = subBuilder.buildPartial();
             }
-            packetDataCase_ = 3;
+            packetDataCase_ = 4;
             break;
           }
-          case 34: {
+          case 42: {
             optic_fusion1.common.protos.PongPacket.Builder subBuilder = null;
-            if (packetDataCase_ == 4) {
+            if (packetDataCase_ == 5) {
               subBuilder = ((optic_fusion1.common.protos.PongPacket) packetData_).toBuilder();
             }
             packetData_ =
@@ -101,12 +107,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((optic_fusion1.common.protos.PongPacket) packetData_);
               packetData_ = subBuilder.buildPartial();
             }
-            packetDataCase_ = 4;
+            packetDataCase_ = 5;
             break;
           }
-          case 42: {
+          case 50: {
             optic_fusion1.common.protos.ErrorPacket.Builder subBuilder = null;
-            if (packetDataCase_ == 5) {
+            if (packetDataCase_ == 6) {
               subBuilder = ((optic_fusion1.common.protos.ErrorPacket) packetData_).toBuilder();
             }
             packetData_ =
@@ -115,7 +121,7 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((optic_fusion1.common.protos.ErrorPacket) packetData_);
               packetData_ = subBuilder.buildPartial();
             }
-            packetDataCase_ = 5;
+            packetDataCase_ = 6;
             break;
           }
           default: {
@@ -279,10 +285,10 @@ private static final long serialVersionUID = 0L;
   public enum PacketDataCase
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    HANDSHAKE_REQUEST_DATA(2),
-    HANDSHAKE_RESPONSE_DATA(3),
-    PONG_DATA(4),
-    ERROR_DATA(5),
+    HANDSHAKE_REQUEST_DATA(3),
+    HANDSHAKE_RESPONSE_DATA(4),
+    PONG_DATA(5),
+    ERROR_DATA(6),
     PACKETDATA_NOT_SET(0);
     private final int value;
     private PacketDataCase(int value) {
@@ -300,10 +306,10 @@ private static final long serialVersionUID = 0L;
 
     public static PacketDataCase forNumber(int value) {
       switch (value) {
-        case 2: return HANDSHAKE_REQUEST_DATA;
-        case 3: return HANDSHAKE_RESPONSE_DATA;
-        case 4: return PONG_DATA;
-        case 5: return ERROR_DATA;
+        case 3: return HANDSHAKE_REQUEST_DATA;
+        case 4: return HANDSHAKE_RESPONSE_DATA;
+        case 5: return PONG_DATA;
+        case 6: return ERROR_DATA;
         case 0: return PACKETDATA_NOT_SET;
         default: return null;
       }
@@ -338,125 +344,152 @@ private static final long serialVersionUID = 0L;
     return result == null ? optic_fusion1.common.protos.Packet.Type.HANDSHAKE_REQUEST : result;
   }
 
-  public static final int HANDSHAKE_REQUEST_DATA_FIELD_NUMBER = 2;
+  public static final int SIGNATURE_FIELD_NUMBER = 2;
+  private com.google.protobuf.ByteString signature_;
   /**
-   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   * <pre>
+   * Required for all packet types other than handshake request and response
+   * </pre>
+   *
+   * <code>optional bytes signature = 2;</code>
+   * @return Whether the signature field is set.
+   */
+  @java.lang.Override
+  public boolean hasSignature() {
+    return ((bitField0_ & 0x00000002) != 0);
+  }
+  /**
+   * <pre>
+   * Required for all packet types other than handshake request and response
+   * </pre>
+   *
+   * <code>optional bytes signature = 2;</code>
+   * @return The signature.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getSignature() {
+    return signature_;
+  }
+
+  public static final int HANDSHAKE_REQUEST_DATA_FIELD_NUMBER = 3;
+  /**
+   * <code>.HandshakeRequest handshake_request_data = 3;</code>
    * @return Whether the handshakeRequestData field is set.
    */
   @java.lang.Override
   public boolean hasHandshakeRequestData() {
-    return packetDataCase_ == 2;
+    return packetDataCase_ == 3;
   }
   /**
-   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   * <code>.HandshakeRequest handshake_request_data = 3;</code>
    * @return The handshakeRequestData.
    */
   @java.lang.Override
   public optic_fusion1.common.protos.HandshakeRequest getHandshakeRequestData() {
-    if (packetDataCase_ == 2) {
+    if (packetDataCase_ == 3) {
        return (optic_fusion1.common.protos.HandshakeRequest) packetData_;
     }
     return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
   }
   /**
-   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   * <code>.HandshakeRequest handshake_request_data = 3;</code>
    */
   @java.lang.Override
   public optic_fusion1.common.protos.HandshakeRequestOrBuilder getHandshakeRequestDataOrBuilder() {
-    if (packetDataCase_ == 2) {
+    if (packetDataCase_ == 3) {
        return (optic_fusion1.common.protos.HandshakeRequest) packetData_;
     }
     return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
   }
 
-  public static final int HANDSHAKE_RESPONSE_DATA_FIELD_NUMBER = 3;
+  public static final int HANDSHAKE_RESPONSE_DATA_FIELD_NUMBER = 4;
   /**
-   * <code>.HandshakeResponse handshake_response_data = 3;</code>
+   * <code>.HandshakeResponse handshake_response_data = 4;</code>
    * @return Whether the handshakeResponseData field is set.
    */
   @java.lang.Override
   public boolean hasHandshakeResponseData() {
-    return packetDataCase_ == 3;
+    return packetDataCase_ == 4;
   }
   /**
-   * <code>.HandshakeResponse handshake_response_data = 3;</code>
+   * <code>.HandshakeResponse handshake_response_data = 4;</code>
    * @return The handshakeResponseData.
    */
   @java.lang.Override
   public optic_fusion1.common.protos.HandshakeResponse getHandshakeResponseData() {
-    if (packetDataCase_ == 3) {
+    if (packetDataCase_ == 4) {
        return (optic_fusion1.common.protos.HandshakeResponse) packetData_;
     }
     return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
   }
   /**
-   * <code>.HandshakeResponse handshake_response_data = 3;</code>
+   * <code>.HandshakeResponse handshake_response_data = 4;</code>
    */
   @java.lang.Override
   public optic_fusion1.common.protos.HandshakeResponseOrBuilder getHandshakeResponseDataOrBuilder() {
-    if (packetDataCase_ == 3) {
+    if (packetDataCase_ == 4) {
        return (optic_fusion1.common.protos.HandshakeResponse) packetData_;
     }
     return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
   }
 
-  public static final int PONG_DATA_FIELD_NUMBER = 4;
+  public static final int PONG_DATA_FIELD_NUMBER = 5;
   /**
-   * <code>.PongPacket pong_data = 4;</code>
+   * <code>.PongPacket pong_data = 5;</code>
    * @return Whether the pongData field is set.
    */
   @java.lang.Override
   public boolean hasPongData() {
-    return packetDataCase_ == 4;
+    return packetDataCase_ == 5;
   }
   /**
-   * <code>.PongPacket pong_data = 4;</code>
+   * <code>.PongPacket pong_data = 5;</code>
    * @return The pongData.
    */
   @java.lang.Override
   public optic_fusion1.common.protos.PongPacket getPongData() {
-    if (packetDataCase_ == 4) {
+    if (packetDataCase_ == 5) {
        return (optic_fusion1.common.protos.PongPacket) packetData_;
     }
     return optic_fusion1.common.protos.PongPacket.getDefaultInstance();
   }
   /**
-   * <code>.PongPacket pong_data = 4;</code>
+   * <code>.PongPacket pong_data = 5;</code>
    */
   @java.lang.Override
   public optic_fusion1.common.protos.PongPacketOrBuilder getPongDataOrBuilder() {
-    if (packetDataCase_ == 4) {
+    if (packetDataCase_ == 5) {
        return (optic_fusion1.common.protos.PongPacket) packetData_;
     }
     return optic_fusion1.common.protos.PongPacket.getDefaultInstance();
   }
 
-  public static final int ERROR_DATA_FIELD_NUMBER = 5;
+  public static final int ERROR_DATA_FIELD_NUMBER = 6;
   /**
-   * <code>.ErrorPacket error_data = 5;</code>
+   * <code>.ErrorPacket error_data = 6;</code>
    * @return Whether the errorData field is set.
    */
   @java.lang.Override
   public boolean hasErrorData() {
-    return packetDataCase_ == 5;
+    return packetDataCase_ == 6;
   }
   /**
-   * <code>.ErrorPacket error_data = 5;</code>
+   * <code>.ErrorPacket error_data = 6;</code>
    * @return The errorData.
    */
   @java.lang.Override
   public optic_fusion1.common.protos.ErrorPacket getErrorData() {
-    if (packetDataCase_ == 5) {
+    if (packetDataCase_ == 6) {
        return (optic_fusion1.common.protos.ErrorPacket) packetData_;
     }
     return optic_fusion1.common.protos.ErrorPacket.getDefaultInstance();
   }
   /**
-   * <code>.ErrorPacket error_data = 5;</code>
+   * <code>.ErrorPacket error_data = 6;</code>
    */
   @java.lang.Override
   public optic_fusion1.common.protos.ErrorPacketOrBuilder getErrorDataOrBuilder() {
-    if (packetDataCase_ == 5) {
+    if (packetDataCase_ == 6) {
        return (optic_fusion1.common.protos.ErrorPacket) packetData_;
     }
     return optic_fusion1.common.protos.ErrorPacket.getDefaultInstance();
@@ -507,17 +540,20 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000001) != 0)) {
       output.writeEnum(1, packetType_);
     }
-    if (packetDataCase_ == 2) {
-      output.writeMessage(2, (optic_fusion1.common.protos.HandshakeRequest) packetData_);
+    if (((bitField0_ & 0x00000002) != 0)) {
+      output.writeBytes(2, signature_);
     }
     if (packetDataCase_ == 3) {
-      output.writeMessage(3, (optic_fusion1.common.protos.HandshakeResponse) packetData_);
+      output.writeMessage(3, (optic_fusion1.common.protos.HandshakeRequest) packetData_);
     }
     if (packetDataCase_ == 4) {
-      output.writeMessage(4, (optic_fusion1.common.protos.PongPacket) packetData_);
+      output.writeMessage(4, (optic_fusion1.common.protos.HandshakeResponse) packetData_);
     }
     if (packetDataCase_ == 5) {
-      output.writeMessage(5, (optic_fusion1.common.protos.ErrorPacket) packetData_);
+      output.writeMessage(5, (optic_fusion1.common.protos.PongPacket) packetData_);
+    }
+    if (packetDataCase_ == 6) {
+      output.writeMessage(6, (optic_fusion1.common.protos.ErrorPacket) packetData_);
     }
     unknownFields.writeTo(output);
   }
@@ -532,21 +568,25 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, packetType_);
     }
-    if (packetDataCase_ == 2) {
+    if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, (optic_fusion1.common.protos.HandshakeRequest) packetData_);
+        .computeBytesSize(2, signature_);
     }
     if (packetDataCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, (optic_fusion1.common.protos.HandshakeResponse) packetData_);
+        .computeMessageSize(3, (optic_fusion1.common.protos.HandshakeRequest) packetData_);
     }
     if (packetDataCase_ == 4) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, (optic_fusion1.common.protos.PongPacket) packetData_);
+        .computeMessageSize(4, (optic_fusion1.common.protos.HandshakeResponse) packetData_);
     }
     if (packetDataCase_ == 5) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, (optic_fusion1.common.protos.ErrorPacket) packetData_);
+        .computeMessageSize(5, (optic_fusion1.common.protos.PongPacket) packetData_);
+    }
+    if (packetDataCase_ == 6) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, (optic_fusion1.common.protos.ErrorPacket) packetData_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -567,21 +607,26 @@ private static final long serialVersionUID = 0L;
     if (hasPacketType()) {
       if (packetType_ != other.packetType_) return false;
     }
+    if (hasSignature() != other.hasSignature()) return false;
+    if (hasSignature()) {
+      if (!getSignature()
+          .equals(other.getSignature())) return false;
+    }
     if (!getPacketDataCase().equals(other.getPacketDataCase())) return false;
     switch (packetDataCase_) {
-      case 2:
+      case 3:
         if (!getHandshakeRequestData()
             .equals(other.getHandshakeRequestData())) return false;
         break;
-      case 3:
+      case 4:
         if (!getHandshakeResponseData()
             .equals(other.getHandshakeResponseData())) return false;
         break;
-      case 4:
+      case 5:
         if (!getPongData()
             .equals(other.getPongData())) return false;
         break;
-      case 5:
+      case 6:
         if (!getErrorData()
             .equals(other.getErrorData())) return false;
         break;
@@ -603,20 +648,24 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + PACKET_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + packetType_;
     }
+    if (hasSignature()) {
+      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
+      hash = (53 * hash) + getSignature().hashCode();
+    }
     switch (packetDataCase_) {
-      case 2:
+      case 3:
         hash = (37 * hash) + HANDSHAKE_REQUEST_DATA_FIELD_NUMBER;
         hash = (53 * hash) + getHandshakeRequestData().hashCode();
         break;
-      case 3:
+      case 4:
         hash = (37 * hash) + HANDSHAKE_RESPONSE_DATA_FIELD_NUMBER;
         hash = (53 * hash) + getHandshakeResponseData().hashCode();
         break;
-      case 4:
+      case 5:
         hash = (37 * hash) + PONG_DATA_FIELD_NUMBER;
         hash = (53 * hash) + getPongData().hashCode();
         break;
-      case 5:
+      case 6:
         hash = (37 * hash) + ERROR_DATA_FIELD_NUMBER;
         hash = (53 * hash) + getErrorData().hashCode();
         break;
@@ -758,6 +807,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       packetType_ = 0;
       bitField0_ = (bitField0_ & ~0x00000001);
+      signature_ = com.google.protobuf.ByteString.EMPTY;
+      bitField0_ = (bitField0_ & ~0x00000002);
       packetDataCase_ = 0;
       packetData_ = null;
       return this;
@@ -792,28 +843,32 @@ private static final long serialVersionUID = 0L;
         to_bitField0_ |= 0x00000001;
       }
       result.packetType_ = packetType_;
-      if (packetDataCase_ == 2) {
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        to_bitField0_ |= 0x00000002;
+      }
+      result.signature_ = signature_;
+      if (packetDataCase_ == 3) {
         if (handshakeRequestDataBuilder_ == null) {
           result.packetData_ = packetData_;
         } else {
           result.packetData_ = handshakeRequestDataBuilder_.build();
         }
       }
-      if (packetDataCase_ == 3) {
+      if (packetDataCase_ == 4) {
         if (handshakeResponseDataBuilder_ == null) {
           result.packetData_ = packetData_;
         } else {
           result.packetData_ = handshakeResponseDataBuilder_.build();
         }
       }
-      if (packetDataCase_ == 4) {
+      if (packetDataCase_ == 5) {
         if (pongDataBuilder_ == null) {
           result.packetData_ = packetData_;
         } else {
           result.packetData_ = pongDataBuilder_.build();
         }
       }
-      if (packetDataCase_ == 5) {
+      if (packetDataCase_ == 6) {
         if (errorDataBuilder_ == null) {
           result.packetData_ = packetData_;
         } else {
@@ -872,6 +927,9 @@ private static final long serialVersionUID = 0L;
       if (other == optic_fusion1.common.protos.Packet.getDefaultInstance()) return this;
       if (other.hasPacketType()) {
         setPacketType(other.getPacketType());
+      }
+      if (other.hasSignature()) {
+        setSignature(other.getSignature());
       }
       switch (other.getPacketDataCase()) {
         case HANDSHAKE_REQUEST_DATA: {
@@ -1005,36 +1063,94 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * Required for all packet types other than handshake request and response
+     * </pre>
+     *
+     * <code>optional bytes signature = 2;</code>
+     * @return Whether the signature field is set.
+     */
+    @java.lang.Override
+    public boolean hasSignature() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * Required for all packet types other than handshake request and response
+     * </pre>
+     *
+     * <code>optional bytes signature = 2;</code>
+     * @return The signature.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getSignature() {
+      return signature_;
+    }
+    /**
+     * <pre>
+     * Required for all packet types other than handshake request and response
+     * </pre>
+     *
+     * <code>optional bytes signature = 2;</code>
+     * @param value The signature to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSignature(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+      signature_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * Required for all packet types other than handshake request and response
+     * </pre>
+     *
+     * <code>optional bytes signature = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearSignature() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      signature_ = getDefaultInstance().getSignature();
+      onChanged();
+      return this;
+    }
+
     private com.google.protobuf.SingleFieldBuilderV3<
         optic_fusion1.common.protos.HandshakeRequest, optic_fusion1.common.protos.HandshakeRequest.Builder, optic_fusion1.common.protos.HandshakeRequestOrBuilder> handshakeRequestDataBuilder_;
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      * @return Whether the handshakeRequestData field is set.
      */
     @java.lang.Override
     public boolean hasHandshakeRequestData() {
-      return packetDataCase_ == 2;
+      return packetDataCase_ == 3;
     }
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      * @return The handshakeRequestData.
      */
     @java.lang.Override
     public optic_fusion1.common.protos.HandshakeRequest getHandshakeRequestData() {
       if (handshakeRequestDataBuilder_ == null) {
-        if (packetDataCase_ == 2) {
+        if (packetDataCase_ == 3) {
           return (optic_fusion1.common.protos.HandshakeRequest) packetData_;
         }
         return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
       } else {
-        if (packetDataCase_ == 2) {
+        if (packetDataCase_ == 3) {
           return handshakeRequestDataBuilder_.getMessage();
         }
         return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
       }
     }
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      */
     public Builder setHandshakeRequestData(optic_fusion1.common.protos.HandshakeRequest value) {
       if (handshakeRequestDataBuilder_ == null) {
@@ -1046,11 +1162,11 @@ private static final long serialVersionUID = 0L;
       } else {
         handshakeRequestDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 2;
+      packetDataCase_ = 3;
       return this;
     }
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      */
     public Builder setHandshakeRequestData(
         optic_fusion1.common.protos.HandshakeRequest.Builder builderForValue) {
@@ -1060,15 +1176,15 @@ private static final long serialVersionUID = 0L;
       } else {
         handshakeRequestDataBuilder_.setMessage(builderForValue.build());
       }
-      packetDataCase_ = 2;
+      packetDataCase_ = 3;
       return this;
     }
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      */
     public Builder mergeHandshakeRequestData(optic_fusion1.common.protos.HandshakeRequest value) {
       if (handshakeRequestDataBuilder_ == null) {
-        if (packetDataCase_ == 2 &&
+        if (packetDataCase_ == 3 &&
             packetData_ != optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance()) {
           packetData_ = optic_fusion1.common.protos.HandshakeRequest.newBuilder((optic_fusion1.common.protos.HandshakeRequest) packetData_)
               .mergeFrom(value).buildPartial();
@@ -1077,26 +1193,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (packetDataCase_ == 2) {
+        if (packetDataCase_ == 3) {
           handshakeRequestDataBuilder_.mergeFrom(value);
         }
         handshakeRequestDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 2;
+      packetDataCase_ = 3;
       return this;
     }
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      */
     public Builder clearHandshakeRequestData() {
       if (handshakeRequestDataBuilder_ == null) {
-        if (packetDataCase_ == 2) {
+        if (packetDataCase_ == 3) {
           packetDataCase_ = 0;
           packetData_ = null;
           onChanged();
         }
       } else {
-        if (packetDataCase_ == 2) {
+        if (packetDataCase_ == 3) {
           packetDataCase_ = 0;
           packetData_ = null;
         }
@@ -1105,33 +1221,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      */
     public optic_fusion1.common.protos.HandshakeRequest.Builder getHandshakeRequestDataBuilder() {
       return getHandshakeRequestDataFieldBuilder().getBuilder();
     }
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      */
     @java.lang.Override
     public optic_fusion1.common.protos.HandshakeRequestOrBuilder getHandshakeRequestDataOrBuilder() {
-      if ((packetDataCase_ == 2) && (handshakeRequestDataBuilder_ != null)) {
+      if ((packetDataCase_ == 3) && (handshakeRequestDataBuilder_ != null)) {
         return handshakeRequestDataBuilder_.getMessageOrBuilder();
       } else {
-        if (packetDataCase_ == 2) {
+        if (packetDataCase_ == 3) {
           return (optic_fusion1.common.protos.HandshakeRequest) packetData_;
         }
         return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
       }
     }
     /**
-     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * <code>.HandshakeRequest handshake_request_data = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         optic_fusion1.common.protos.HandshakeRequest, optic_fusion1.common.protos.HandshakeRequest.Builder, optic_fusion1.common.protos.HandshakeRequestOrBuilder> 
         getHandshakeRequestDataFieldBuilder() {
       if (handshakeRequestDataBuilder_ == null) {
-        if (!(packetDataCase_ == 2)) {
+        if (!(packetDataCase_ == 3)) {
           packetData_ = optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
         }
         handshakeRequestDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1141,7 +1257,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         packetData_ = null;
       }
-      packetDataCase_ = 2;
+      packetDataCase_ = 3;
       onChanged();;
       return handshakeRequestDataBuilder_;
     }
@@ -1149,33 +1265,33 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         optic_fusion1.common.protos.HandshakeResponse, optic_fusion1.common.protos.HandshakeResponse.Builder, optic_fusion1.common.protos.HandshakeResponseOrBuilder> handshakeResponseDataBuilder_;
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      * @return Whether the handshakeResponseData field is set.
      */
     @java.lang.Override
     public boolean hasHandshakeResponseData() {
-      return packetDataCase_ == 3;
+      return packetDataCase_ == 4;
     }
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      * @return The handshakeResponseData.
      */
     @java.lang.Override
     public optic_fusion1.common.protos.HandshakeResponse getHandshakeResponseData() {
       if (handshakeResponseDataBuilder_ == null) {
-        if (packetDataCase_ == 3) {
+        if (packetDataCase_ == 4) {
           return (optic_fusion1.common.protos.HandshakeResponse) packetData_;
         }
         return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
       } else {
-        if (packetDataCase_ == 3) {
+        if (packetDataCase_ == 4) {
           return handshakeResponseDataBuilder_.getMessage();
         }
         return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
       }
     }
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      */
     public Builder setHandshakeResponseData(optic_fusion1.common.protos.HandshakeResponse value) {
       if (handshakeResponseDataBuilder_ == null) {
@@ -1187,11 +1303,11 @@ private static final long serialVersionUID = 0L;
       } else {
         handshakeResponseDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 3;
+      packetDataCase_ = 4;
       return this;
     }
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      */
     public Builder setHandshakeResponseData(
         optic_fusion1.common.protos.HandshakeResponse.Builder builderForValue) {
@@ -1201,15 +1317,15 @@ private static final long serialVersionUID = 0L;
       } else {
         handshakeResponseDataBuilder_.setMessage(builderForValue.build());
       }
-      packetDataCase_ = 3;
+      packetDataCase_ = 4;
       return this;
     }
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      */
     public Builder mergeHandshakeResponseData(optic_fusion1.common.protos.HandshakeResponse value) {
       if (handshakeResponseDataBuilder_ == null) {
-        if (packetDataCase_ == 3 &&
+        if (packetDataCase_ == 4 &&
             packetData_ != optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance()) {
           packetData_ = optic_fusion1.common.protos.HandshakeResponse.newBuilder((optic_fusion1.common.protos.HandshakeResponse) packetData_)
               .mergeFrom(value).buildPartial();
@@ -1218,26 +1334,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (packetDataCase_ == 3) {
+        if (packetDataCase_ == 4) {
           handshakeResponseDataBuilder_.mergeFrom(value);
         }
         handshakeResponseDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 3;
+      packetDataCase_ = 4;
       return this;
     }
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      */
     public Builder clearHandshakeResponseData() {
       if (handshakeResponseDataBuilder_ == null) {
-        if (packetDataCase_ == 3) {
+        if (packetDataCase_ == 4) {
           packetDataCase_ = 0;
           packetData_ = null;
           onChanged();
         }
       } else {
-        if (packetDataCase_ == 3) {
+        if (packetDataCase_ == 4) {
           packetDataCase_ = 0;
           packetData_ = null;
         }
@@ -1246,33 +1362,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      */
     public optic_fusion1.common.protos.HandshakeResponse.Builder getHandshakeResponseDataBuilder() {
       return getHandshakeResponseDataFieldBuilder().getBuilder();
     }
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      */
     @java.lang.Override
     public optic_fusion1.common.protos.HandshakeResponseOrBuilder getHandshakeResponseDataOrBuilder() {
-      if ((packetDataCase_ == 3) && (handshakeResponseDataBuilder_ != null)) {
+      if ((packetDataCase_ == 4) && (handshakeResponseDataBuilder_ != null)) {
         return handshakeResponseDataBuilder_.getMessageOrBuilder();
       } else {
-        if (packetDataCase_ == 3) {
+        if (packetDataCase_ == 4) {
           return (optic_fusion1.common.protos.HandshakeResponse) packetData_;
         }
         return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
       }
     }
     /**
-     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         optic_fusion1.common.protos.HandshakeResponse, optic_fusion1.common.protos.HandshakeResponse.Builder, optic_fusion1.common.protos.HandshakeResponseOrBuilder> 
         getHandshakeResponseDataFieldBuilder() {
       if (handshakeResponseDataBuilder_ == null) {
-        if (!(packetDataCase_ == 3)) {
+        if (!(packetDataCase_ == 4)) {
           packetData_ = optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
         }
         handshakeResponseDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1282,7 +1398,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         packetData_ = null;
       }
-      packetDataCase_ = 3;
+      packetDataCase_ = 4;
       onChanged();;
       return handshakeResponseDataBuilder_;
     }
@@ -1290,33 +1406,33 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         optic_fusion1.common.protos.PongPacket, optic_fusion1.common.protos.PongPacket.Builder, optic_fusion1.common.protos.PongPacketOrBuilder> pongDataBuilder_;
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      * @return Whether the pongData field is set.
      */
     @java.lang.Override
     public boolean hasPongData() {
-      return packetDataCase_ == 4;
+      return packetDataCase_ == 5;
     }
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      * @return The pongData.
      */
     @java.lang.Override
     public optic_fusion1.common.protos.PongPacket getPongData() {
       if (pongDataBuilder_ == null) {
-        if (packetDataCase_ == 4) {
+        if (packetDataCase_ == 5) {
           return (optic_fusion1.common.protos.PongPacket) packetData_;
         }
         return optic_fusion1.common.protos.PongPacket.getDefaultInstance();
       } else {
-        if (packetDataCase_ == 4) {
+        if (packetDataCase_ == 5) {
           return pongDataBuilder_.getMessage();
         }
         return optic_fusion1.common.protos.PongPacket.getDefaultInstance();
       }
     }
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      */
     public Builder setPongData(optic_fusion1.common.protos.PongPacket value) {
       if (pongDataBuilder_ == null) {
@@ -1328,11 +1444,11 @@ private static final long serialVersionUID = 0L;
       } else {
         pongDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 4;
+      packetDataCase_ = 5;
       return this;
     }
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      */
     public Builder setPongData(
         optic_fusion1.common.protos.PongPacket.Builder builderForValue) {
@@ -1342,15 +1458,15 @@ private static final long serialVersionUID = 0L;
       } else {
         pongDataBuilder_.setMessage(builderForValue.build());
       }
-      packetDataCase_ = 4;
+      packetDataCase_ = 5;
       return this;
     }
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      */
     public Builder mergePongData(optic_fusion1.common.protos.PongPacket value) {
       if (pongDataBuilder_ == null) {
-        if (packetDataCase_ == 4 &&
+        if (packetDataCase_ == 5 &&
             packetData_ != optic_fusion1.common.protos.PongPacket.getDefaultInstance()) {
           packetData_ = optic_fusion1.common.protos.PongPacket.newBuilder((optic_fusion1.common.protos.PongPacket) packetData_)
               .mergeFrom(value).buildPartial();
@@ -1359,26 +1475,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (packetDataCase_ == 4) {
+        if (packetDataCase_ == 5) {
           pongDataBuilder_.mergeFrom(value);
         }
         pongDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 4;
+      packetDataCase_ = 5;
       return this;
     }
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      */
     public Builder clearPongData() {
       if (pongDataBuilder_ == null) {
-        if (packetDataCase_ == 4) {
+        if (packetDataCase_ == 5) {
           packetDataCase_ = 0;
           packetData_ = null;
           onChanged();
         }
       } else {
-        if (packetDataCase_ == 4) {
+        if (packetDataCase_ == 5) {
           packetDataCase_ = 0;
           packetData_ = null;
         }
@@ -1387,33 +1503,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      */
     public optic_fusion1.common.protos.PongPacket.Builder getPongDataBuilder() {
       return getPongDataFieldBuilder().getBuilder();
     }
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      */
     @java.lang.Override
     public optic_fusion1.common.protos.PongPacketOrBuilder getPongDataOrBuilder() {
-      if ((packetDataCase_ == 4) && (pongDataBuilder_ != null)) {
+      if ((packetDataCase_ == 5) && (pongDataBuilder_ != null)) {
         return pongDataBuilder_.getMessageOrBuilder();
       } else {
-        if (packetDataCase_ == 4) {
+        if (packetDataCase_ == 5) {
           return (optic_fusion1.common.protos.PongPacket) packetData_;
         }
         return optic_fusion1.common.protos.PongPacket.getDefaultInstance();
       }
     }
     /**
-     * <code>.PongPacket pong_data = 4;</code>
+     * <code>.PongPacket pong_data = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         optic_fusion1.common.protos.PongPacket, optic_fusion1.common.protos.PongPacket.Builder, optic_fusion1.common.protos.PongPacketOrBuilder> 
         getPongDataFieldBuilder() {
       if (pongDataBuilder_ == null) {
-        if (!(packetDataCase_ == 4)) {
+        if (!(packetDataCase_ == 5)) {
           packetData_ = optic_fusion1.common.protos.PongPacket.getDefaultInstance();
         }
         pongDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1423,7 +1539,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         packetData_ = null;
       }
-      packetDataCase_ = 4;
+      packetDataCase_ = 5;
       onChanged();;
       return pongDataBuilder_;
     }
@@ -1431,33 +1547,33 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         optic_fusion1.common.protos.ErrorPacket, optic_fusion1.common.protos.ErrorPacket.Builder, optic_fusion1.common.protos.ErrorPacketOrBuilder> errorDataBuilder_;
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      * @return Whether the errorData field is set.
      */
     @java.lang.Override
     public boolean hasErrorData() {
-      return packetDataCase_ == 5;
+      return packetDataCase_ == 6;
     }
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      * @return The errorData.
      */
     @java.lang.Override
     public optic_fusion1.common.protos.ErrorPacket getErrorData() {
       if (errorDataBuilder_ == null) {
-        if (packetDataCase_ == 5) {
+        if (packetDataCase_ == 6) {
           return (optic_fusion1.common.protos.ErrorPacket) packetData_;
         }
         return optic_fusion1.common.protos.ErrorPacket.getDefaultInstance();
       } else {
-        if (packetDataCase_ == 5) {
+        if (packetDataCase_ == 6) {
           return errorDataBuilder_.getMessage();
         }
         return optic_fusion1.common.protos.ErrorPacket.getDefaultInstance();
       }
     }
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      */
     public Builder setErrorData(optic_fusion1.common.protos.ErrorPacket value) {
       if (errorDataBuilder_ == null) {
@@ -1469,11 +1585,11 @@ private static final long serialVersionUID = 0L;
       } else {
         errorDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 5;
+      packetDataCase_ = 6;
       return this;
     }
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      */
     public Builder setErrorData(
         optic_fusion1.common.protos.ErrorPacket.Builder builderForValue) {
@@ -1483,15 +1599,15 @@ private static final long serialVersionUID = 0L;
       } else {
         errorDataBuilder_.setMessage(builderForValue.build());
       }
-      packetDataCase_ = 5;
+      packetDataCase_ = 6;
       return this;
     }
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      */
     public Builder mergeErrorData(optic_fusion1.common.protos.ErrorPacket value) {
       if (errorDataBuilder_ == null) {
-        if (packetDataCase_ == 5 &&
+        if (packetDataCase_ == 6 &&
             packetData_ != optic_fusion1.common.protos.ErrorPacket.getDefaultInstance()) {
           packetData_ = optic_fusion1.common.protos.ErrorPacket.newBuilder((optic_fusion1.common.protos.ErrorPacket) packetData_)
               .mergeFrom(value).buildPartial();
@@ -1500,26 +1616,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (packetDataCase_ == 5) {
+        if (packetDataCase_ == 6) {
           errorDataBuilder_.mergeFrom(value);
         }
         errorDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 5;
+      packetDataCase_ = 6;
       return this;
     }
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      */
     public Builder clearErrorData() {
       if (errorDataBuilder_ == null) {
-        if (packetDataCase_ == 5) {
+        if (packetDataCase_ == 6) {
           packetDataCase_ = 0;
           packetData_ = null;
           onChanged();
         }
       } else {
-        if (packetDataCase_ == 5) {
+        if (packetDataCase_ == 6) {
           packetDataCase_ = 0;
           packetData_ = null;
         }
@@ -1528,33 +1644,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      */
     public optic_fusion1.common.protos.ErrorPacket.Builder getErrorDataBuilder() {
       return getErrorDataFieldBuilder().getBuilder();
     }
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      */
     @java.lang.Override
     public optic_fusion1.common.protos.ErrorPacketOrBuilder getErrorDataOrBuilder() {
-      if ((packetDataCase_ == 5) && (errorDataBuilder_ != null)) {
+      if ((packetDataCase_ == 6) && (errorDataBuilder_ != null)) {
         return errorDataBuilder_.getMessageOrBuilder();
       } else {
-        if (packetDataCase_ == 5) {
+        if (packetDataCase_ == 6) {
           return (optic_fusion1.common.protos.ErrorPacket) packetData_;
         }
         return optic_fusion1.common.protos.ErrorPacket.getDefaultInstance();
       }
     }
     /**
-     * <code>.ErrorPacket error_data = 5;</code>
+     * <code>.ErrorPacket error_data = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         optic_fusion1.common.protos.ErrorPacket, optic_fusion1.common.protos.ErrorPacket.Builder, optic_fusion1.common.protos.ErrorPacketOrBuilder> 
         getErrorDataFieldBuilder() {
       if (errorDataBuilder_ == null) {
-        if (!(packetDataCase_ == 5)) {
+        if (!(packetDataCase_ == 6)) {
           packetData_ = optic_fusion1.common.protos.ErrorPacket.getDefaultInstance();
         }
         errorDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1564,7 +1680,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         packetData_ = null;
       }
-      packetDataCase_ = 5;
+      packetDataCase_ = 6;
       onChanged();;
       return errorDataBuilder_;
     }

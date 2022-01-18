@@ -19,62 +19,81 @@ public interface PacketOrBuilder extends
   optic_fusion1.common.protos.Packet.Type getPacketType();
 
   /**
-   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   * <pre>
+   * Required for all packet types other than handshake request and response
+   * </pre>
+   *
+   * <code>optional bytes signature = 2;</code>
+   * @return Whether the signature field is set.
+   */
+  boolean hasSignature();
+  /**
+   * <pre>
+   * Required for all packet types other than handshake request and response
+   * </pre>
+   *
+   * <code>optional bytes signature = 2;</code>
+   * @return The signature.
+   */
+  com.google.protobuf.ByteString getSignature();
+
+  /**
+   * <code>.HandshakeRequest handshake_request_data = 3;</code>
    * @return Whether the handshakeRequestData field is set.
    */
   boolean hasHandshakeRequestData();
   /**
-   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   * <code>.HandshakeRequest handshake_request_data = 3;</code>
    * @return The handshakeRequestData.
    */
   optic_fusion1.common.protos.HandshakeRequest getHandshakeRequestData();
   /**
-   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   * <code>.HandshakeRequest handshake_request_data = 3;</code>
    */
   optic_fusion1.common.protos.HandshakeRequestOrBuilder getHandshakeRequestDataOrBuilder();
 
   /**
-   * <code>.HandshakeResponse handshake_response_data = 3;</code>
+   * <code>.HandshakeResponse handshake_response_data = 4;</code>
    * @return Whether the handshakeResponseData field is set.
    */
   boolean hasHandshakeResponseData();
   /**
-   * <code>.HandshakeResponse handshake_response_data = 3;</code>
+   * <code>.HandshakeResponse handshake_response_data = 4;</code>
    * @return The handshakeResponseData.
    */
   optic_fusion1.common.protos.HandshakeResponse getHandshakeResponseData();
   /**
-   * <code>.HandshakeResponse handshake_response_data = 3;</code>
+   * <code>.HandshakeResponse handshake_response_data = 4;</code>
    */
   optic_fusion1.common.protos.HandshakeResponseOrBuilder getHandshakeResponseDataOrBuilder();
 
   /**
-   * <code>.PongPacket pong_data = 4;</code>
+   * <code>.PongPacket pong_data = 5;</code>
    * @return Whether the pongData field is set.
    */
   boolean hasPongData();
   /**
-   * <code>.PongPacket pong_data = 4;</code>
+   * <code>.PongPacket pong_data = 5;</code>
    * @return The pongData.
    */
   optic_fusion1.common.protos.PongPacket getPongData();
   /**
-   * <code>.PongPacket pong_data = 4;</code>
+   * <code>.PongPacket pong_data = 5;</code>
    */
   optic_fusion1.common.protos.PongPacketOrBuilder getPongDataOrBuilder();
 
   /**
-   * <code>.ErrorPacket error_data = 5;</code>
+   * <code>.ErrorPacket error_data = 6;</code>
    * @return Whether the errorData field is set.
    */
   boolean hasErrorData();
   /**
-   * <code>.ErrorPacket error_data = 5;</code>
+   * <code>.ErrorPacket error_data = 6;</code>
    * @return The errorData.
    */
   optic_fusion1.common.protos.ErrorPacket getErrorData();
   /**
-   * <code>.ErrorPacket error_data = 5;</code>
+   * <code>.ErrorPacket error_data = 6;</code>
    */
   optic_fusion1.common.protos.ErrorPacketOrBuilder getErrorDataOrBuilder();
 

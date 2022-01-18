@@ -48,7 +48,9 @@ message Packet {
   }
 
   required Type packet_type = 1;
-  oneof packet_data { HandshakeRequest handshake_request_data = 2; HandshakeResponse handshake_response_data = 3; PongPacket pong_data = 4; ErrorPacket error_data = 5;};
+  // Required for all packet types other than handshake request and response
+  optional bytes signature = 2;
+  oneof packet_data { HandshakeRequest handshake_request_data = 3; HandshakeResponse handshake_response_data = 4; PongPacket pong_data = 5; ErrorPacket error_data = 6;};
 }
 
 //    optional bool use_encryption = 4 [default = false];
