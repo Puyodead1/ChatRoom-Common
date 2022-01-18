@@ -15,10 +15,15 @@ public final class ChatRoomProtocol {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_HandshakePacket_descriptor;
+    internal_static_HandshakeRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_HandshakePacket_fieldAccessorTable;
+      internal_static_HandshakeRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HandshakeResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HandshakeResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_PongPacket_descriptor;
   static final 
@@ -43,51 +48,63 @@ public final class ChatRoomProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026ChatRoomProtocol.proto\"=\n\017HandshakePac" +
-      "ket\022*\n\020protocol_version\030\002 \002(\0162\020.Protocol" +
-      "Version\"_\n\nPongPacket\0221\n\027server_protocol" +
-      "_version\030\001 \002(\0162\020.ProtocolVersion\022\036\n\026conn" +
-      "ected_client_count\030\002 \002(\005\"v\n\013ErrorPacket\022" +
-      "%\n\nerror_type\030\001 \002(\0162\021.ErrorPacket.Type\022\023" +
-      "\n\013description\030\002 \002(\t\"+\n\004Type\022\026\n\022CONNECTIO" +
-      "N_REFUSED\020\000\022\013\n\007UNKNOWN\020\001\"\342\001\n\006Packet\022!\n\013p" +
-      "acket_type\030\001 \002(\0162\014.Packet.Type\022*\n\016handsh" +
-      "ake_data\030\003 \001(\0132\020.HandshakePacketH\000\022 \n\tpo" +
-      "ng_data\030\004 \001(\0132\013.PongPacketH\000\022\"\n\nerror_da" +
-      "ta\030\005 \001(\0132\014.ErrorPacketH\000\"4\n\004Type\022\r\n\tHAND" +
-      "SHAKE\020\000\022\010\n\004PING\020\001\022\010\n\004PONG\020\002\022\t\n\005ERROR\020\003B\r" +
-      "\n\013packet_data*3\n\017ProtocolVersion\022\017\n\013VERS" +
-      "ION_000\020\000\022\017\n\013VERSION_001\020\001B1\n\033optic_fusi" +
-      "on1.common.protosB\020ChatRoomProtocolP\001"
+      "\n\026ChatRoomProtocol.proto\"V\n\020HandshakeReq" +
+      "uest\022*\n\020protocol_version\030\001 \002(\0162\020.Protoco" +
+      "lVersion\022\026\n\016rsa_public_key\030\002 \002(\014\"}\n\021Hand" +
+      "shakeResponse\022*\n\020protocol_version\030\001 \002(\0162" +
+      "\020.ProtocolVersion\022\022\n\nsession_id\030\002 \002(\t\022\020\n" +
+      "\010hmac_key\030\003 \002(\014\022\026\n\016rsa_public_key\030\004 \002(\014\"" +
+      "_\n\nPongPacket\0221\n\027server_protocol_version" +
+      "\030\001 \002(\0162\020.ProtocolVersion\022\036\n\026connected_cl" +
+      "ient_count\030\002 \002(\005\"v\n\013ErrorPacket\022%\n\nerror" +
+      "_type\030\001 \002(\0162\021.ErrorPacket.Type\022\023\n\013descri" +
+      "ption\030\002 \002(\t\"+\n\004Type\022\026\n\022CONNECTION_REFUSE" +
+      "D\020\000\022\013\n\007UNKNOWN\020\001\"\302\002\n\006Packet\022!\n\013packet_ty" +
+      "pe\030\001 \002(\0162\014.Packet.Type\0223\n\026handshake_requ" +
+      "est_data\030\002 \001(\0132\021.HandshakeRequestH\000\0225\n\027h" +
+      "andshake_response_data\030\003 \001(\0132\022.Handshake" +
+      "ResponseH\000\022 \n\tpong_data\030\004 \001(\0132\013.PongPack" +
+      "etH\000\022\"\n\nerror_data\030\005 \001(\0132\014.ErrorPacketH\000" +
+      "\"T\n\004Type\022\025\n\021HANDSHAKE_REQUEST\020\000\022\026\n\022HANDS" +
+      "HAKE_RESPONSE\020\001\022\010\n\004PING\020\002\022\010\n\004PONG\020\003\022\t\n\005E" +
+      "RROR\020\004B\r\n\013packet_data* \n\017ProtocolVersion" +
+      "\022\r\n\tVERSION_1\020\001B1\n\033optic_fusion1.common." +
+      "protosB\020ChatRoomProtocolP\001"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_HandshakePacket_descriptor =
+    internal_static_HandshakeRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_HandshakePacket_fieldAccessorTable = new
+    internal_static_HandshakeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_HandshakePacket_descriptor,
-        new java.lang.String[] { "ProtocolVersion", });
-    internal_static_PongPacket_descriptor =
+        internal_static_HandshakeRequest_descriptor,
+        new java.lang.String[] { "ProtocolVersion", "RsaPublicKey", });
+    internal_static_HandshakeResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_HandshakeResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HandshakeResponse_descriptor,
+        new java.lang.String[] { "ProtocolVersion", "SessionId", "HmacKey", "RsaPublicKey", });
+    internal_static_PongPacket_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_PongPacket_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PongPacket_descriptor,
         new java.lang.String[] { "ServerProtocolVersion", "ConnectedClientCount", });
     internal_static_ErrorPacket_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_ErrorPacket_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ErrorPacket_descriptor,
         new java.lang.String[] { "ErrorType", "Description", });
     internal_static_Packet_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_Packet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Packet_descriptor,
-        new java.lang.String[] { "PacketType", "HandshakeData", "PongData", "ErrorData", "PacketData", });
+        new java.lang.String[] { "PacketType", "HandshakeRequestData", "HandshakeResponseData", "PongData", "ErrorData", "PacketData", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -5,13 +5,21 @@ option java_package = "optic_fusion1.common.protos";
 option java_outer_classname = "ChatRoomProtocol";
 
 enum ProtocolVersion {
-  VERSION_000 = 0;
-  VERSION_001 = 1;
+  VERSION_1 = 1;
 }
 
 // Client -> Server
-message HandshakePacket {
-  required ProtocolVersion protocol_version = 2;
+message HandshakeRequest {
+  required ProtocolVersion protocol_version = 1;
+  required bytes rsa_public_key = 2;
+}
+
+// Server -> Client
+message HandshakeResponse {
+  required ProtocolVersion protocol_version = 1;
+  required string session_id = 2;
+  required bytes hmac_key = 3;
+  required bytes rsa_public_key = 4;
 }
 
 // Server -> Client
@@ -32,14 +40,15 @@ message ErrorPacket {
 
 message Packet {
   enum Type {
-    HANDSHAKE = 0;
-    PING = 1;
-    PONG = 2;
-    ERROR = 3;
+    HANDSHAKE_REQUEST = 0;
+    HANDSHAKE_RESPONSE = 1;
+    PING = 2;
+    PONG = 3;
+    ERROR = 4;
   }
 
   required Type packet_type = 1;
-  oneof packet_data { HandshakePacket handshake_data = 3; PongPacket pong_data = 4; ErrorPacket error_data = 5;};
+  oneof packet_data { HandshakeRequest handshake_request_data = 2; HandshakeResponse handshake_response_data = 3; PongPacket pong_data = 4; ErrorPacket error_data = 5;};
 }
 
 //    optional bool use_encryption = 4 [default = false];

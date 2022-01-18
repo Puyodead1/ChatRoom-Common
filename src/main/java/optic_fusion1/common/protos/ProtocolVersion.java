@@ -9,23 +9,15 @@ package optic_fusion1.common.protos;
 public enum ProtocolVersion
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
-   * <code>VERSION_000 = 0;</code>
+   * <code>VERSION_1 = 1;</code>
    */
-  VERSION_000(0),
-  /**
-   * <code>VERSION_001 = 1;</code>
-   */
-  VERSION_001(1),
+  VERSION_1(1),
   ;
 
   /**
-   * <code>VERSION_000 = 0;</code>
+   * <code>VERSION_1 = 1;</code>
    */
-  public static final int VERSION_000_VALUE = 0;
-  /**
-   * <code>VERSION_001 = 1;</code>
-   */
-  public static final int VERSION_001_VALUE = 1;
+  public static final int VERSION_1_VALUE = 1;
 
 
   public final int getNumber() {
@@ -48,8 +40,7 @@ public enum ProtocolVersion
    */
   public static ProtocolVersion forNumber(int value) {
     switch (value) {
-      case 0: return VERSION_000;
-      case 1: return VERSION_001;
+      case 1: return VERSION_1;
       default: return null;
     }
   }

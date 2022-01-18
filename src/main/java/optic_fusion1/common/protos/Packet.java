@@ -62,15 +62,29 @@ private static final long serialVersionUID = 0L;
             }
             break;
           }
-          case 26: {
-            optic_fusion1.common.protos.HandshakePacket.Builder subBuilder = null;
-            if (packetDataCase_ == 3) {
-              subBuilder = ((optic_fusion1.common.protos.HandshakePacket) packetData_).toBuilder();
+          case 18: {
+            optic_fusion1.common.protos.HandshakeRequest.Builder subBuilder = null;
+            if (packetDataCase_ == 2) {
+              subBuilder = ((optic_fusion1.common.protos.HandshakeRequest) packetData_).toBuilder();
             }
             packetData_ =
-                input.readMessage(optic_fusion1.common.protos.HandshakePacket.PARSER, extensionRegistry);
+                input.readMessage(optic_fusion1.common.protos.HandshakeRequest.PARSER, extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((optic_fusion1.common.protos.HandshakePacket) packetData_);
+              subBuilder.mergeFrom((optic_fusion1.common.protos.HandshakeRequest) packetData_);
+              packetData_ = subBuilder.buildPartial();
+            }
+            packetDataCase_ = 2;
+            break;
+          }
+          case 26: {
+            optic_fusion1.common.protos.HandshakeResponse.Builder subBuilder = null;
+            if (packetDataCase_ == 3) {
+              subBuilder = ((optic_fusion1.common.protos.HandshakeResponse) packetData_).toBuilder();
+            }
+            packetData_ =
+                input.readMessage(optic_fusion1.common.protos.HandshakeResponse.PARSER, extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((optic_fusion1.common.protos.HandshakeResponse) packetData_);
               packetData_ = subBuilder.buildPartial();
             }
             packetDataCase_ = 3;
@@ -142,39 +156,47 @@ private static final long serialVersionUID = 0L;
   public enum Type
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>HANDSHAKE = 0;</code>
+     * <code>HANDSHAKE_REQUEST = 0;</code>
      */
-    HANDSHAKE(0),
+    HANDSHAKE_REQUEST(0),
     /**
-     * <code>PING = 1;</code>
+     * <code>HANDSHAKE_RESPONSE = 1;</code>
      */
-    PING(1),
+    HANDSHAKE_RESPONSE(1),
     /**
-     * <code>PONG = 2;</code>
+     * <code>PING = 2;</code>
      */
-    PONG(2),
+    PING(2),
     /**
-     * <code>ERROR = 3;</code>
+     * <code>PONG = 3;</code>
      */
-    ERROR(3),
+    PONG(3),
+    /**
+     * <code>ERROR = 4;</code>
+     */
+    ERROR(4),
     ;
 
     /**
-     * <code>HANDSHAKE = 0;</code>
+     * <code>HANDSHAKE_REQUEST = 0;</code>
      */
-    public static final int HANDSHAKE_VALUE = 0;
+    public static final int HANDSHAKE_REQUEST_VALUE = 0;
     /**
-     * <code>PING = 1;</code>
+     * <code>HANDSHAKE_RESPONSE = 1;</code>
      */
-    public static final int PING_VALUE = 1;
+    public static final int HANDSHAKE_RESPONSE_VALUE = 1;
     /**
-     * <code>PONG = 2;</code>
+     * <code>PING = 2;</code>
      */
-    public static final int PONG_VALUE = 2;
+    public static final int PING_VALUE = 2;
     /**
-     * <code>ERROR = 3;</code>
+     * <code>PONG = 3;</code>
      */
-    public static final int ERROR_VALUE = 3;
+    public static final int PONG_VALUE = 3;
+    /**
+     * <code>ERROR = 4;</code>
+     */
+    public static final int ERROR_VALUE = 4;
 
 
     public final int getNumber() {
@@ -197,10 +219,11 @@ private static final long serialVersionUID = 0L;
      */
     public static Type forNumber(int value) {
       switch (value) {
-        case 0: return HANDSHAKE;
-        case 1: return PING;
-        case 2: return PONG;
-        case 3: return ERROR;
+        case 0: return HANDSHAKE_REQUEST;
+        case 1: return HANDSHAKE_RESPONSE;
+        case 2: return PING;
+        case 3: return PONG;
+        case 4: return ERROR;
         default: return null;
       }
     }
@@ -256,7 +279,8 @@ private static final long serialVersionUID = 0L;
   public enum PacketDataCase
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    HANDSHAKE_DATA(3),
+    HANDSHAKE_REQUEST_DATA(2),
+    HANDSHAKE_RESPONSE_DATA(3),
     PONG_DATA(4),
     ERROR_DATA(5),
     PACKETDATA_NOT_SET(0);
@@ -276,7 +300,8 @@ private static final long serialVersionUID = 0L;
 
     public static PacketDataCase forNumber(int value) {
       switch (value) {
-        case 3: return HANDSHAKE_DATA;
+        case 2: return HANDSHAKE_REQUEST_DATA;
+        case 3: return HANDSHAKE_RESPONSE_DATA;
         case 4: return PONG_DATA;
         case 5: return ERROR_DATA;
         case 0: return PACKETDATA_NOT_SET;
@@ -310,38 +335,69 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override public optic_fusion1.common.protos.Packet.Type getPacketType() {
     @SuppressWarnings("deprecation")
     optic_fusion1.common.protos.Packet.Type result = optic_fusion1.common.protos.Packet.Type.valueOf(packetType_);
-    return result == null ? optic_fusion1.common.protos.Packet.Type.HANDSHAKE : result;
+    return result == null ? optic_fusion1.common.protos.Packet.Type.HANDSHAKE_REQUEST : result;
   }
 
-  public static final int HANDSHAKE_DATA_FIELD_NUMBER = 3;
+  public static final int HANDSHAKE_REQUEST_DATA_FIELD_NUMBER = 2;
   /**
-   * <code>.HandshakePacket handshake_data = 3;</code>
-   * @return Whether the handshakeData field is set.
+   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   * @return Whether the handshakeRequestData field is set.
    */
   @java.lang.Override
-  public boolean hasHandshakeData() {
+  public boolean hasHandshakeRequestData() {
+    return packetDataCase_ == 2;
+  }
+  /**
+   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   * @return The handshakeRequestData.
+   */
+  @java.lang.Override
+  public optic_fusion1.common.protos.HandshakeRequest getHandshakeRequestData() {
+    if (packetDataCase_ == 2) {
+       return (optic_fusion1.common.protos.HandshakeRequest) packetData_;
+    }
+    return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
+  }
+  /**
+   * <code>.HandshakeRequest handshake_request_data = 2;</code>
+   */
+  @java.lang.Override
+  public optic_fusion1.common.protos.HandshakeRequestOrBuilder getHandshakeRequestDataOrBuilder() {
+    if (packetDataCase_ == 2) {
+       return (optic_fusion1.common.protos.HandshakeRequest) packetData_;
+    }
+    return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
+  }
+
+  public static final int HANDSHAKE_RESPONSE_DATA_FIELD_NUMBER = 3;
+  /**
+   * <code>.HandshakeResponse handshake_response_data = 3;</code>
+   * @return Whether the handshakeResponseData field is set.
+   */
+  @java.lang.Override
+  public boolean hasHandshakeResponseData() {
     return packetDataCase_ == 3;
   }
   /**
-   * <code>.HandshakePacket handshake_data = 3;</code>
-   * @return The handshakeData.
+   * <code>.HandshakeResponse handshake_response_data = 3;</code>
+   * @return The handshakeResponseData.
    */
   @java.lang.Override
-  public optic_fusion1.common.protos.HandshakePacket getHandshakeData() {
+  public optic_fusion1.common.protos.HandshakeResponse getHandshakeResponseData() {
     if (packetDataCase_ == 3) {
-       return (optic_fusion1.common.protos.HandshakePacket) packetData_;
+       return (optic_fusion1.common.protos.HandshakeResponse) packetData_;
     }
-    return optic_fusion1.common.protos.HandshakePacket.getDefaultInstance();
+    return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
   }
   /**
-   * <code>.HandshakePacket handshake_data = 3;</code>
+   * <code>.HandshakeResponse handshake_response_data = 3;</code>
    */
   @java.lang.Override
-  public optic_fusion1.common.protos.HandshakePacketOrBuilder getHandshakeDataOrBuilder() {
+  public optic_fusion1.common.protos.HandshakeResponseOrBuilder getHandshakeResponseDataOrBuilder() {
     if (packetDataCase_ == 3) {
-       return (optic_fusion1.common.protos.HandshakePacket) packetData_;
+       return (optic_fusion1.common.protos.HandshakeResponse) packetData_;
     }
-    return optic_fusion1.common.protos.HandshakePacket.getDefaultInstance();
+    return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
   }
 
   public static final int PONG_DATA_FIELD_NUMBER = 4;
@@ -417,8 +473,14 @@ private static final long serialVersionUID = 0L;
       memoizedIsInitialized = 0;
       return false;
     }
-    if (hasHandshakeData()) {
-      if (!getHandshakeData().isInitialized()) {
+    if (hasHandshakeRequestData()) {
+      if (!getHandshakeRequestData().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+    }
+    if (hasHandshakeResponseData()) {
+      if (!getHandshakeResponseData().isInitialized()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -445,8 +507,11 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000001) != 0)) {
       output.writeEnum(1, packetType_);
     }
+    if (packetDataCase_ == 2) {
+      output.writeMessage(2, (optic_fusion1.common.protos.HandshakeRequest) packetData_);
+    }
     if (packetDataCase_ == 3) {
-      output.writeMessage(3, (optic_fusion1.common.protos.HandshakePacket) packetData_);
+      output.writeMessage(3, (optic_fusion1.common.protos.HandshakeResponse) packetData_);
     }
     if (packetDataCase_ == 4) {
       output.writeMessage(4, (optic_fusion1.common.protos.PongPacket) packetData_);
@@ -467,9 +532,13 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, packetType_);
     }
+    if (packetDataCase_ == 2) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, (optic_fusion1.common.protos.HandshakeRequest) packetData_);
+    }
     if (packetDataCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, (optic_fusion1.common.protos.HandshakePacket) packetData_);
+        .computeMessageSize(3, (optic_fusion1.common.protos.HandshakeResponse) packetData_);
     }
     if (packetDataCase_ == 4) {
       size += com.google.protobuf.CodedOutputStream
@@ -500,9 +569,13 @@ private static final long serialVersionUID = 0L;
     }
     if (!getPacketDataCase().equals(other.getPacketDataCase())) return false;
     switch (packetDataCase_) {
+      case 2:
+        if (!getHandshakeRequestData()
+            .equals(other.getHandshakeRequestData())) return false;
+        break;
       case 3:
-        if (!getHandshakeData()
-            .equals(other.getHandshakeData())) return false;
+        if (!getHandshakeResponseData()
+            .equals(other.getHandshakeResponseData())) return false;
         break;
       case 4:
         if (!getPongData()
@@ -531,9 +604,13 @@ private static final long serialVersionUID = 0L;
       hash = (53 * hash) + packetType_;
     }
     switch (packetDataCase_) {
+      case 2:
+        hash = (37 * hash) + HANDSHAKE_REQUEST_DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getHandshakeRequestData().hashCode();
+        break;
       case 3:
-        hash = (37 * hash) + HANDSHAKE_DATA_FIELD_NUMBER;
-        hash = (53 * hash) + getHandshakeData().hashCode();
+        hash = (37 * hash) + HANDSHAKE_RESPONSE_DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getHandshakeResponseData().hashCode();
         break;
       case 4:
         hash = (37 * hash) + PONG_DATA_FIELD_NUMBER;
@@ -715,11 +792,18 @@ private static final long serialVersionUID = 0L;
         to_bitField0_ |= 0x00000001;
       }
       result.packetType_ = packetType_;
-      if (packetDataCase_ == 3) {
-        if (handshakeDataBuilder_ == null) {
+      if (packetDataCase_ == 2) {
+        if (handshakeRequestDataBuilder_ == null) {
           result.packetData_ = packetData_;
         } else {
-          result.packetData_ = handshakeDataBuilder_.build();
+          result.packetData_ = handshakeRequestDataBuilder_.build();
+        }
+      }
+      if (packetDataCase_ == 3) {
+        if (handshakeResponseDataBuilder_ == null) {
+          result.packetData_ = packetData_;
+        } else {
+          result.packetData_ = handshakeResponseDataBuilder_.build();
         }
       }
       if (packetDataCase_ == 4) {
@@ -790,8 +874,12 @@ private static final long serialVersionUID = 0L;
         setPacketType(other.getPacketType());
       }
       switch (other.getPacketDataCase()) {
-        case HANDSHAKE_DATA: {
-          mergeHandshakeData(other.getHandshakeData());
+        case HANDSHAKE_REQUEST_DATA: {
+          mergeHandshakeRequestData(other.getHandshakeRequestData());
+          break;
+        }
+        case HANDSHAKE_RESPONSE_DATA: {
+          mergeHandshakeResponseData(other.getHandshakeResponseData());
           break;
         }
         case PONG_DATA: {
@@ -816,8 +904,13 @@ private static final long serialVersionUID = 0L;
       if (!hasPacketType()) {
         return false;
       }
-      if (hasHandshakeData()) {
-        if (!getHandshakeData().isInitialized()) {
+      if (hasHandshakeRequestData()) {
+        if (!getHandshakeRequestData().isInitialized()) {
+          return false;
+        }
+      }
+      if (hasHandshakeResponseData()) {
+        if (!getHandshakeResponseData().isInitialized()) {
           return false;
         }
       }
@@ -885,7 +978,7 @@ private static final long serialVersionUID = 0L;
     public optic_fusion1.common.protos.Packet.Type getPacketType() {
       @SuppressWarnings("deprecation")
       optic_fusion1.common.protos.Packet.Type result = optic_fusion1.common.protos.Packet.Type.valueOf(packetType_);
-      return result == null ? optic_fusion1.common.protos.Packet.Type.HANDSHAKE : result;
+      return result == null ? optic_fusion1.common.protos.Packet.Type.HANDSHAKE_REQUEST : result;
     }
     /**
      * <code>required .Packet.Type packet_type = 1;</code>
@@ -913,71 +1006,212 @@ private static final long serialVersionUID = 0L;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
-        optic_fusion1.common.protos.HandshakePacket, optic_fusion1.common.protos.HandshakePacket.Builder, optic_fusion1.common.protos.HandshakePacketOrBuilder> handshakeDataBuilder_;
+        optic_fusion1.common.protos.HandshakeRequest, optic_fusion1.common.protos.HandshakeRequest.Builder, optic_fusion1.common.protos.HandshakeRequestOrBuilder> handshakeRequestDataBuilder_;
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
-     * @return Whether the handshakeData field is set.
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * @return Whether the handshakeRequestData field is set.
      */
     @java.lang.Override
-    public boolean hasHandshakeData() {
-      return packetDataCase_ == 3;
+    public boolean hasHandshakeRequestData() {
+      return packetDataCase_ == 2;
     }
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
-     * @return The handshakeData.
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     * @return The handshakeRequestData.
      */
     @java.lang.Override
-    public optic_fusion1.common.protos.HandshakePacket getHandshakeData() {
-      if (handshakeDataBuilder_ == null) {
-        if (packetDataCase_ == 3) {
-          return (optic_fusion1.common.protos.HandshakePacket) packetData_;
+    public optic_fusion1.common.protos.HandshakeRequest getHandshakeRequestData() {
+      if (handshakeRequestDataBuilder_ == null) {
+        if (packetDataCase_ == 2) {
+          return (optic_fusion1.common.protos.HandshakeRequest) packetData_;
         }
-        return optic_fusion1.common.protos.HandshakePacket.getDefaultInstance();
+        return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
       } else {
-        if (packetDataCase_ == 3) {
-          return handshakeDataBuilder_.getMessage();
+        if (packetDataCase_ == 2) {
+          return handshakeRequestDataBuilder_.getMessage();
         }
-        return optic_fusion1.common.protos.HandshakePacket.getDefaultInstance();
+        return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
       }
     }
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
      */
-    public Builder setHandshakeData(optic_fusion1.common.protos.HandshakePacket value) {
-      if (handshakeDataBuilder_ == null) {
+    public Builder setHandshakeRequestData(optic_fusion1.common.protos.HandshakeRequest value) {
+      if (handshakeRequestDataBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
         packetData_ = value;
         onChanged();
       } else {
-        handshakeDataBuilder_.setMessage(value);
+        handshakeRequestDataBuilder_.setMessage(value);
       }
-      packetDataCase_ = 3;
+      packetDataCase_ = 2;
       return this;
     }
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
      */
-    public Builder setHandshakeData(
-        optic_fusion1.common.protos.HandshakePacket.Builder builderForValue) {
-      if (handshakeDataBuilder_ == null) {
+    public Builder setHandshakeRequestData(
+        optic_fusion1.common.protos.HandshakeRequest.Builder builderForValue) {
+      if (handshakeRequestDataBuilder_ == null) {
         packetData_ = builderForValue.build();
         onChanged();
       } else {
-        handshakeDataBuilder_.setMessage(builderForValue.build());
+        handshakeRequestDataBuilder_.setMessage(builderForValue.build());
+      }
+      packetDataCase_ = 2;
+      return this;
+    }
+    /**
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     */
+    public Builder mergeHandshakeRequestData(optic_fusion1.common.protos.HandshakeRequest value) {
+      if (handshakeRequestDataBuilder_ == null) {
+        if (packetDataCase_ == 2 &&
+            packetData_ != optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance()) {
+          packetData_ = optic_fusion1.common.protos.HandshakeRequest.newBuilder((optic_fusion1.common.protos.HandshakeRequest) packetData_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          packetData_ = value;
+        }
+        onChanged();
+      } else {
+        if (packetDataCase_ == 2) {
+          handshakeRequestDataBuilder_.mergeFrom(value);
+        }
+        handshakeRequestDataBuilder_.setMessage(value);
+      }
+      packetDataCase_ = 2;
+      return this;
+    }
+    /**
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     */
+    public Builder clearHandshakeRequestData() {
+      if (handshakeRequestDataBuilder_ == null) {
+        if (packetDataCase_ == 2) {
+          packetDataCase_ = 0;
+          packetData_ = null;
+          onChanged();
+        }
+      } else {
+        if (packetDataCase_ == 2) {
+          packetDataCase_ = 0;
+          packetData_ = null;
+        }
+        handshakeRequestDataBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     */
+    public optic_fusion1.common.protos.HandshakeRequest.Builder getHandshakeRequestDataBuilder() {
+      return getHandshakeRequestDataFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     */
+    @java.lang.Override
+    public optic_fusion1.common.protos.HandshakeRequestOrBuilder getHandshakeRequestDataOrBuilder() {
+      if ((packetDataCase_ == 2) && (handshakeRequestDataBuilder_ != null)) {
+        return handshakeRequestDataBuilder_.getMessageOrBuilder();
+      } else {
+        if (packetDataCase_ == 2) {
+          return (optic_fusion1.common.protos.HandshakeRequest) packetData_;
+        }
+        return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.HandshakeRequest handshake_request_data = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        optic_fusion1.common.protos.HandshakeRequest, optic_fusion1.common.protos.HandshakeRequest.Builder, optic_fusion1.common.protos.HandshakeRequestOrBuilder> 
+        getHandshakeRequestDataFieldBuilder() {
+      if (handshakeRequestDataBuilder_ == null) {
+        if (!(packetDataCase_ == 2)) {
+          packetData_ = optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
+        }
+        handshakeRequestDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            optic_fusion1.common.protos.HandshakeRequest, optic_fusion1.common.protos.HandshakeRequest.Builder, optic_fusion1.common.protos.HandshakeRequestOrBuilder>(
+                (optic_fusion1.common.protos.HandshakeRequest) packetData_,
+                getParentForChildren(),
+                isClean());
+        packetData_ = null;
+      }
+      packetDataCase_ = 2;
+      onChanged();;
+      return handshakeRequestDataBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        optic_fusion1.common.protos.HandshakeResponse, optic_fusion1.common.protos.HandshakeResponse.Builder, optic_fusion1.common.protos.HandshakeResponseOrBuilder> handshakeResponseDataBuilder_;
+    /**
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * @return Whether the handshakeResponseData field is set.
+     */
+    @java.lang.Override
+    public boolean hasHandshakeResponseData() {
+      return packetDataCase_ == 3;
+    }
+    /**
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     * @return The handshakeResponseData.
+     */
+    @java.lang.Override
+    public optic_fusion1.common.protos.HandshakeResponse getHandshakeResponseData() {
+      if (handshakeResponseDataBuilder_ == null) {
+        if (packetDataCase_ == 3) {
+          return (optic_fusion1.common.protos.HandshakeResponse) packetData_;
+        }
+        return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
+      } else {
+        if (packetDataCase_ == 3) {
+          return handshakeResponseDataBuilder_.getMessage();
+        }
+        return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     */
+    public Builder setHandshakeResponseData(optic_fusion1.common.protos.HandshakeResponse value) {
+      if (handshakeResponseDataBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        packetData_ = value;
+        onChanged();
+      } else {
+        handshakeResponseDataBuilder_.setMessage(value);
       }
       packetDataCase_ = 3;
       return this;
     }
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
      */
-    public Builder mergeHandshakeData(optic_fusion1.common.protos.HandshakePacket value) {
-      if (handshakeDataBuilder_ == null) {
+    public Builder setHandshakeResponseData(
+        optic_fusion1.common.protos.HandshakeResponse.Builder builderForValue) {
+      if (handshakeResponseDataBuilder_ == null) {
+        packetData_ = builderForValue.build();
+        onChanged();
+      } else {
+        handshakeResponseDataBuilder_.setMessage(builderForValue.build());
+      }
+      packetDataCase_ = 3;
+      return this;
+    }
+    /**
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
+     */
+    public Builder mergeHandshakeResponseData(optic_fusion1.common.protos.HandshakeResponse value) {
+      if (handshakeResponseDataBuilder_ == null) {
         if (packetDataCase_ == 3 &&
-            packetData_ != optic_fusion1.common.protos.HandshakePacket.getDefaultInstance()) {
-          packetData_ = optic_fusion1.common.protos.HandshakePacket.newBuilder((optic_fusion1.common.protos.HandshakePacket) packetData_)
+            packetData_ != optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance()) {
+          packetData_ = optic_fusion1.common.protos.HandshakeResponse.newBuilder((optic_fusion1.common.protos.HandshakeResponse) packetData_)
               .mergeFrom(value).buildPartial();
         } else {
           packetData_ = value;
@@ -985,18 +1219,18 @@ private static final long serialVersionUID = 0L;
         onChanged();
       } else {
         if (packetDataCase_ == 3) {
-          handshakeDataBuilder_.mergeFrom(value);
+          handshakeResponseDataBuilder_.mergeFrom(value);
         }
-        handshakeDataBuilder_.setMessage(value);
+        handshakeResponseDataBuilder_.setMessage(value);
       }
       packetDataCase_ = 3;
       return this;
     }
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
      */
-    public Builder clearHandshakeData() {
-      if (handshakeDataBuilder_ == null) {
+    public Builder clearHandshakeResponseData() {
+      if (handshakeResponseDataBuilder_ == null) {
         if (packetDataCase_ == 3) {
           packetDataCase_ = 0;
           packetData_ = null;
@@ -1007,50 +1241,50 @@ private static final long serialVersionUID = 0L;
           packetDataCase_ = 0;
           packetData_ = null;
         }
-        handshakeDataBuilder_.clear();
+        handshakeResponseDataBuilder_.clear();
       }
       return this;
     }
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
      */
-    public optic_fusion1.common.protos.HandshakePacket.Builder getHandshakeDataBuilder() {
-      return getHandshakeDataFieldBuilder().getBuilder();
+    public optic_fusion1.common.protos.HandshakeResponse.Builder getHandshakeResponseDataBuilder() {
+      return getHandshakeResponseDataFieldBuilder().getBuilder();
     }
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
      */
     @java.lang.Override
-    public optic_fusion1.common.protos.HandshakePacketOrBuilder getHandshakeDataOrBuilder() {
-      if ((packetDataCase_ == 3) && (handshakeDataBuilder_ != null)) {
-        return handshakeDataBuilder_.getMessageOrBuilder();
+    public optic_fusion1.common.protos.HandshakeResponseOrBuilder getHandshakeResponseDataOrBuilder() {
+      if ((packetDataCase_ == 3) && (handshakeResponseDataBuilder_ != null)) {
+        return handshakeResponseDataBuilder_.getMessageOrBuilder();
       } else {
         if (packetDataCase_ == 3) {
-          return (optic_fusion1.common.protos.HandshakePacket) packetData_;
+          return (optic_fusion1.common.protos.HandshakeResponse) packetData_;
         }
-        return optic_fusion1.common.protos.HandshakePacket.getDefaultInstance();
+        return optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
       }
     }
     /**
-     * <code>.HandshakePacket handshake_data = 3;</code>
+     * <code>.HandshakeResponse handshake_response_data = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        optic_fusion1.common.protos.HandshakePacket, optic_fusion1.common.protos.HandshakePacket.Builder, optic_fusion1.common.protos.HandshakePacketOrBuilder> 
-        getHandshakeDataFieldBuilder() {
-      if (handshakeDataBuilder_ == null) {
+        optic_fusion1.common.protos.HandshakeResponse, optic_fusion1.common.protos.HandshakeResponse.Builder, optic_fusion1.common.protos.HandshakeResponseOrBuilder> 
+        getHandshakeResponseDataFieldBuilder() {
+      if (handshakeResponseDataBuilder_ == null) {
         if (!(packetDataCase_ == 3)) {
-          packetData_ = optic_fusion1.common.protos.HandshakePacket.getDefaultInstance();
+          packetData_ = optic_fusion1.common.protos.HandshakeResponse.getDefaultInstance();
         }
-        handshakeDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            optic_fusion1.common.protos.HandshakePacket, optic_fusion1.common.protos.HandshakePacket.Builder, optic_fusion1.common.protos.HandshakePacketOrBuilder>(
-                (optic_fusion1.common.protos.HandshakePacket) packetData_,
+        handshakeResponseDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            optic_fusion1.common.protos.HandshakeResponse, optic_fusion1.common.protos.HandshakeResponse.Builder, optic_fusion1.common.protos.HandshakeResponseOrBuilder>(
+                (optic_fusion1.common.protos.HandshakeResponse) packetData_,
                 getParentForChildren(),
                 isClean());
         packetData_ = null;
       }
       packetDataCase_ = 3;
       onChanged();;
-      return handshakeDataBuilder_;
+      return handshakeResponseDataBuilder_;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<

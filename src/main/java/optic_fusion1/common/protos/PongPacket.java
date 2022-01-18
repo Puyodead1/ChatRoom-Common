@@ -20,7 +20,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private PongPacket() {
-    serverProtocolVersion_ = 0;
+    serverProtocolVersion_ = 1;
   }
 
   @java.lang.Override
@@ -120,7 +120,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override public optic_fusion1.common.protos.ProtocolVersion getServerProtocolVersion() {
     @SuppressWarnings("deprecation")
     optic_fusion1.common.protos.ProtocolVersion result = optic_fusion1.common.protos.ProtocolVersion.valueOf(serverProtocolVersion_);
-    return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_000 : result;
+    return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_1 : result;
   }
 
   public static final int CONNECTED_CLIENT_COUNT_FIELD_NUMBER = 2;
@@ -367,7 +367,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      serverProtocolVersion_ = 0;
+      serverProtocolVersion_ = 1;
       bitField0_ = (bitField0_ & ~0x00000001);
       connectedClientCount_ = 0;
       bitField0_ = (bitField0_ & ~0x00000002);
@@ -498,7 +498,7 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private int serverProtocolVersion_ = 0;
+    private int serverProtocolVersion_ = 1;
     /**
      * <code>required .ProtocolVersion server_protocol_version = 1;</code>
      * @return Whether the serverProtocolVersion field is set.
@@ -514,7 +514,7 @@ private static final long serialVersionUID = 0L;
     public optic_fusion1.common.protos.ProtocolVersion getServerProtocolVersion() {
       @SuppressWarnings("deprecation")
       optic_fusion1.common.protos.ProtocolVersion result = optic_fusion1.common.protos.ProtocolVersion.valueOf(serverProtocolVersion_);
-      return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_000 : result;
+      return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_1 : result;
     }
     /**
      * <code>required .ProtocolVersion server_protocol_version = 1;</code>
@@ -536,7 +536,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearServerProtocolVersion() {
       bitField0_ = (bitField0_ & ~0x00000001);
-      serverProtocolVersion_ = 0;
+      serverProtocolVersion_ = 1;
       onChanged();
       return this;
     }
