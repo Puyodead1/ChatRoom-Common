@@ -11,19 +11,6 @@ public record User(UUID uuid, String username) {
     private static final HashMap<UUID, User> users = new HashMap<>();
 
     /**
-     * Serializes Client to JSON string
-     *
-     * @return JSON string
-     */
-    public String serialize() {
-        JsonObject object = new JsonObject();
-        object.addProperty("id", this.getUuid().toString());
-        object.addProperty("username", this.getUsername());
-
-        return object.toString();
-    }
-
-    /**
      * Deserializes a Client JSON string to a Client object
      *
      * @param string raw Client JSON string
@@ -40,15 +27,28 @@ public record User(UUID uuid, String username) {
         return User.getUsers().getOrDefault(uuid, new User(uuid, username));
     }
 
+    public static HashMap<UUID, User> getUsers() {
+        return users;
+    }
+
+    /**
+     * Serializes Client to JSON string
+     *
+     * @return JSON string
+     */
+    public String serialize() {
+        JsonObject object = new JsonObject();
+        object.addProperty("id", this.getUuid().toString());
+        object.addProperty("username", this.getUsername());
+
+        return object.toString();
+    }
+
     public String getUsername() {
         return username;
     }
 
     public UUID getUuid() {
         return uuid;
-    }
-
-    public static HashMap<UUID, User> getUsers() {
-        return users;
     }
 }
