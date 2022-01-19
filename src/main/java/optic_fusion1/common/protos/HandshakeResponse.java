@@ -85,6 +85,11 @@ private static final long serialVersionUID = 0L;
             rsaPublicKey_ = input.readBytes();
             break;
           }
+          case 40: {
+            bitField0_ |= 0x00000010;
+            authenticationRequired_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -121,6 +126,10 @@ private static final long serialVersionUID = 0L;
   public static final int PROTOCOL_VERSION_FIELD_NUMBER = 1;
   private int protocolVersion_;
   /**
+   * <pre>
+   * The servers protocol version
+   * </pre>
+   *
    * <code>required .ProtocolVersion protocol_version = 1;</code>
    * @return Whether the protocolVersion field is set.
    */
@@ -128,6 +137,10 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
+   * <pre>
+   * The servers protocol version
+   * </pre>
+   *
    * <code>required .ProtocolVersion protocol_version = 1;</code>
    * @return The protocolVersion.
    */
@@ -223,6 +236,25 @@ private static final long serialVersionUID = 0L;
     return rsaPublicKey_;
   }
 
+  public static final int AUTHENTICATION_REQUIRED_FIELD_NUMBER = 5;
+  private boolean authenticationRequired_;
+  /**
+   * <code>required bool authentication_required = 5;</code>
+   * @return Whether the authenticationRequired field is set.
+   */
+  @java.lang.Override
+  public boolean hasAuthenticationRequired() {
+    return ((bitField0_ & 0x00000010) != 0);
+  }
+  /**
+   * <code>required bool authentication_required = 5;</code>
+   * @return The authenticationRequired.
+   */
+  @java.lang.Override
+  public boolean getAuthenticationRequired() {
+    return authenticationRequired_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -246,6 +278,10 @@ private static final long serialVersionUID = 0L;
       memoizedIsInitialized = 0;
       return false;
     }
+    if (!hasAuthenticationRequired()) {
+      memoizedIsInitialized = 0;
+      return false;
+    }
     memoizedIsInitialized = 1;
     return true;
   }
@@ -264,6 +300,9 @@ private static final long serialVersionUID = 0L;
     }
     if (((bitField0_ & 0x00000008) != 0)) {
       output.writeBytes(4, rsaPublicKey_);
+    }
+    if (((bitField0_ & 0x00000010) != 0)) {
+      output.writeBool(5, authenticationRequired_);
     }
     unknownFields.writeTo(output);
   }
@@ -288,6 +327,10 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000008) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(4, rsaPublicKey_);
+    }
+    if (((bitField0_ & 0x00000010) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(5, authenticationRequired_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -323,6 +366,11 @@ private static final long serialVersionUID = 0L;
       if (!getRsaPublicKey()
           .equals(other.getRsaPublicKey())) return false;
     }
+    if (hasAuthenticationRequired() != other.hasAuthenticationRequired()) return false;
+    if (hasAuthenticationRequired()) {
+      if (getAuthenticationRequired()
+          != other.getAuthenticationRequired()) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -349,6 +397,11 @@ private static final long serialVersionUID = 0L;
     if (hasRsaPublicKey()) {
       hash = (37 * hash) + RSA_PUBLIC_KEY_FIELD_NUMBER;
       hash = (53 * hash) + getRsaPublicKey().hashCode();
+    }
+    if (hasAuthenticationRequired()) {
+      hash = (37 * hash) + AUTHENTICATION_REQUIRED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getAuthenticationRequired());
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -495,6 +548,8 @@ private static final long serialVersionUID = 0L;
       bitField0_ = (bitField0_ & ~0x00000004);
       rsaPublicKey_ = com.google.protobuf.ByteString.EMPTY;
       bitField0_ = (bitField0_ & ~0x00000008);
+      authenticationRequired_ = false;
+      bitField0_ = (bitField0_ & ~0x00000010);
       return this;
     }
 
@@ -539,6 +594,10 @@ private static final long serialVersionUID = 0L;
         to_bitField0_ |= 0x00000008;
       }
       result.rsaPublicKey_ = rsaPublicKey_;
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.authenticationRequired_ = authenticationRequired_;
+        to_bitField0_ |= 0x00000010;
+      }
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -602,6 +661,9 @@ private static final long serialVersionUID = 0L;
       if (other.hasRsaPublicKey()) {
         setRsaPublicKey(other.getRsaPublicKey());
       }
+      if (other.hasAuthenticationRequired()) {
+        setAuthenticationRequired(other.getAuthenticationRequired());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -619,6 +681,9 @@ private static final long serialVersionUID = 0L;
         return false;
       }
       if (!hasRsaPublicKey()) {
+        return false;
+      }
+      if (!hasAuthenticationRequired()) {
         return false;
       }
       return true;
@@ -646,6 +711,10 @@ private static final long serialVersionUID = 0L;
 
     private int protocolVersion_ = 1;
     /**
+     * <pre>
+     * The servers protocol version
+     * </pre>
+     *
      * <code>required .ProtocolVersion protocol_version = 1;</code>
      * @return Whether the protocolVersion field is set.
      */
@@ -653,6 +722,10 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
+     * <pre>
+     * The servers protocol version
+     * </pre>
+     *
      * <code>required .ProtocolVersion protocol_version = 1;</code>
      * @return The protocolVersion.
      */
@@ -663,6 +736,10 @@ private static final long serialVersionUID = 0L;
       return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_1 : result;
     }
     /**
+     * <pre>
+     * The servers protocol version
+     * </pre>
+     *
      * <code>required .ProtocolVersion protocol_version = 1;</code>
      * @param value The protocolVersion to set.
      * @return This builder for chaining.
@@ -677,6 +754,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * The servers protocol version
+     * </pre>
+     *
      * <code>required .ProtocolVersion protocol_version = 1;</code>
      * @return This builder for chaining.
      */
@@ -851,6 +932,45 @@ private static final long serialVersionUID = 0L;
     public Builder clearRsaPublicKey() {
       bitField0_ = (bitField0_ & ~0x00000008);
       rsaPublicKey_ = getDefaultInstance().getRsaPublicKey();
+      onChanged();
+      return this;
+    }
+
+    private boolean authenticationRequired_ ;
+    /**
+     * <code>required bool authentication_required = 5;</code>
+     * @return Whether the authenticationRequired field is set.
+     */
+    @java.lang.Override
+    public boolean hasAuthenticationRequired() {
+      return ((bitField0_ & 0x00000010) != 0);
+    }
+    /**
+     * <code>required bool authentication_required = 5;</code>
+     * @return The authenticationRequired.
+     */
+    @java.lang.Override
+    public boolean getAuthenticationRequired() {
+      return authenticationRequired_;
+    }
+    /**
+     * <code>required bool authentication_required = 5;</code>
+     * @param value The authenticationRequired to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAuthenticationRequired(boolean value) {
+      bitField0_ |= 0x00000010;
+      authenticationRequired_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required bool authentication_required = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearAuthenticationRequired() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      authenticationRequired_ = false;
       onChanged();
       return this;
     }

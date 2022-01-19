@@ -8,11 +8,19 @@ public interface HandshakeResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * The servers protocol version
+   * </pre>
+   *
    * <code>required .ProtocolVersion protocol_version = 1;</code>
    * @return Whether the protocolVersion field is set.
    */
   boolean hasProtocolVersion();
   /**
+   * <pre>
+   * The servers protocol version
+   * </pre>
+   *
    * <code>required .ProtocolVersion protocol_version = 1;</code>
    * @return The protocolVersion.
    */
@@ -56,4 +64,15 @@ public interface HandshakeResponseOrBuilder extends
    * @return The rsaPublicKey.
    */
   com.google.protobuf.ByteString getRsaPublicKey();
+
+  /**
+   * <code>required bool authentication_required = 5;</code>
+   * @return Whether the authenticationRequired field is set.
+   */
+  boolean hasAuthenticationRequired();
+  /**
+   * <code>required bool authentication_required = 5;</code>
+   * @return The authenticationRequired.
+   */
+  boolean getAuthenticationRequired();
 }

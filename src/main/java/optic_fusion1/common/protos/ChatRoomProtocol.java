@@ -25,10 +25,20 @@ public final class ChatRoomProtocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_HandshakeResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_PingPacket_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_PingPacket_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_PongPacket_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_PongPacket_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_AuthenticationRequestPacket_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_AuthenticationRequestPacket_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ErrorPacket_descriptor;
   static final 
@@ -50,28 +60,27 @@ public final class ChatRoomProtocol {
     java.lang.String[] descriptorData = {
       "\n\026ChatRoomProtocol.proto\"V\n\020HandshakeReq" +
       "uest\022*\n\020protocol_version\030\001 \002(\0162\020.Protoco" +
-      "lVersion\022\026\n\016rsa_public_key\030\002 \002(\014\"}\n\021Hand" +
-      "shakeResponse\022*\n\020protocol_version\030\001 \002(\0162" +
-      "\020.ProtocolVersion\022\022\n\nsession_id\030\002 \002(\t\022\020\n" +
-      "\010hmac_key\030\003 \002(\014\022\026\n\016rsa_public_key\030\004 \002(\014\"" +
-      "_\n\nPongPacket\0221\n\027server_protocol_version" +
-      "\030\001 \002(\0162\020.ProtocolVersion\022\036\n\026connected_cl" +
-      "ient_count\030\002 \002(\005\"\245\001\n\013ErrorPacket\022%\n\nerro" +
-      "r_type\030\001 \002(\0162\021.ErrorPacket.Type\022\023\n\013descr" +
-      "iption\030\002 \002(\t\"Z\n\004Type\022\026\n\022CONNECTION_REFUS" +
-      "ED\020\000\022\013\n\007UNKNOWN\020\001\022\013\n\007SESSION\020\002\022\020\n\014RSA_KE" +
-      "Y_PAIR\020\003\022\016\n\nVALIDATION\020\004\"\325\002\n\006Packet\022!\n\013p" +
-      "acket_type\030\001 \002(\0162\014.Packet.Type\022\021\n\tsignat" +
-      "ure\030\002 \001(\014\0223\n\026handshake_request_data\030\003 \001(" +
-      "\0132\021.HandshakeRequestH\000\0225\n\027handshake_resp" +
-      "onse_data\030\004 \001(\0132\022.HandshakeResponseH\000\022 \n" +
-      "\tpong_data\030\005 \001(\0132\013.PongPacketH\000\022\"\n\nerror" +
-      "_data\030\006 \001(\0132\014.ErrorPacketH\000\"T\n\004Type\022\025\n\021H" +
-      "ANDSHAKE_REQUEST\020\000\022\026\n\022HANDSHAKE_RESPONSE" +
-      "\020\001\022\010\n\004PING\020\002\022\010\n\004PONG\020\003\022\t\n\005ERROR\020\004B\r\n\013pac" +
-      "ket_data* \n\017ProtocolVersion\022\r\n\tVERSION_1" +
-      "\020\001B1\n\033optic_fusion1.common.protosB\020ChatR" +
-      "oomProtocolP\001"
+      "lVersion\022\026\n\016rsa_public_key\030\002 \002(\014\"\236\001\n\021Han" +
+      "dshakeResponse\022*\n\020protocol_version\030\001 \002(\016" +
+      "2\020.ProtocolVersion\022\022\n\nsession_id\030\002 \002(\t\022\020" +
+      "\n\010hmac_key\030\003 \002(\014\022\026\n\016rsa_public_key\030\004 \002(\014" +
+      "\022\037\n\027authentication_required\030\005 \002(\010\" \n\nPin" +
+      "gPacket\022\022\n\nsession_id\030\002 \002(\t\",\n\nPongPacke" +
+      "t\022\036\n\026connected_client_count\030\002 \002(\005\"U\n\033Aut" +
+      "henticationRequestPacket\022\022\n\nsession_id\030\001" +
+      " \002(\t\022\020\n\010username\030\002 \002(\t\022\020\n\010password\030\003 \002(\t" +
+      "\"\245\001\n\013ErrorPacket\022%\n\nerror_type\030\001 \002(\0162\021.E" +
+      "rrorPacket.Type\022\023\n\013description\030\002 \002(\t\"Z\n\004" +
+      "Type\022\026\n\022CONNECTION_REFUSED\020\000\022\013\n\007UNKNOWN\020" +
+      "\001\022\013\n\007SESSION\020\002\022\020\n\014RSA_KEY_PAIR\020\003\022\016\n\nVALI" +
+      "DATION\020\004\"\334\001\n\006Packet\022!\n\013packet_type\030\001 \002(\016" +
+      "2\014.Packet.Type\022\021\n\tsignature\030\002 \001(\014\022\014\n\004dat" +
+      "a\030\003 \001(\014\"\215\001\n\004Type\022\025\n\021HANDSHAKE_REQUEST\020\000\022" +
+      "\026\n\022HANDSHAKE_RESPONSE\020\001\022\010\n\004PING\020\002\022\010\n\004PON" +
+      "G\020\003\022\t\n\005ERROR\020\004\022\032\n\026AUTHENTICATION_REQUEST" +
+      "\020\005\022\033\n\027AUTHENTICATION_RESPONSE\020\006* \n\017Proto" +
+      "colVersion\022\r\n\tVERSION_1\020\001B1\n\033optic_fusio" +
+      "n1.common.protosB\020ChatRoomProtocolP\001"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -88,25 +97,37 @@ public final class ChatRoomProtocol {
     internal_static_HandshakeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HandshakeResponse_descriptor,
-        new java.lang.String[] { "ProtocolVersion", "SessionId", "HmacKey", "RsaPublicKey", });
-    internal_static_PongPacket_descriptor =
+        new java.lang.String[] { "ProtocolVersion", "SessionId", "HmacKey", "RsaPublicKey", "AuthenticationRequired", });
+    internal_static_PingPacket_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_PingPacket_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_PingPacket_descriptor,
+        new java.lang.String[] { "SessionId", });
+    internal_static_PongPacket_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_PongPacket_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PongPacket_descriptor,
-        new java.lang.String[] { "ServerProtocolVersion", "ConnectedClientCount", });
+        new java.lang.String[] { "ConnectedClientCount", });
+    internal_static_AuthenticationRequestPacket_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_AuthenticationRequestPacket_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_AuthenticationRequestPacket_descriptor,
+        new java.lang.String[] { "SessionId", "Username", "Password", });
     internal_static_ErrorPacket_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_ErrorPacket_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ErrorPacket_descriptor,
         new java.lang.String[] { "ErrorType", "Description", });
     internal_static_Packet_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_Packet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Packet_descriptor,
-        new java.lang.String[] { "PacketType", "Signature", "HandshakeRequestData", "HandshakeResponseData", "PongData", "ErrorData", "PacketData", });
+        new java.lang.String[] { "PacketType", "Signature", "Data", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

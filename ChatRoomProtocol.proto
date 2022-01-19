@@ -10,22 +10,35 @@ enum ProtocolVersion {
 
 // Client -> Server
 message HandshakeRequest {
+  // The clients protocol version
   required ProtocolVersion protocol_version = 1;
   required bytes rsa_public_key = 2;
 }
 
 // Server -> Client
 message HandshakeResponse {
+  // The servers protocol version
   required ProtocolVersion protocol_version = 1;
   required string session_id = 2;
   required bytes hmac_key = 3;
   required bytes rsa_public_key = 4;
+  required bool authentication_required = 5;
+}
+
+// Client -> Server
+message PingPacket {
+  required string session_id = 2;
 }
 
 // Server -> Client
 message PongPacket {
-  required ProtocolVersion server_protocol_version = 1;
   required int32 connected_client_count = 2;
+}
+
+message AuthenticationRequestPacket {
+  required string session_id = 1;
+  required string username = 2;
+  required string password = 3;
 }
 
 message ErrorPacket {
@@ -48,12 +61,15 @@ message Packet {
     PING = 2;
     PONG = 3;
     ERROR = 4;
+    AUTHENTICATION_REQUEST = 5;
+    AUTHENTICATION_RESPONSE = 6;
   }
 
   required Type packet_type = 1;
   // Required for all packet types other than handshake request and response
   optional bytes signature = 2;
-  oneof packet_data { HandshakeRequest handshake_request_data = 3; HandshakeResponse handshake_response_data = 4; PongPacket pong_data = 5; ErrorPacket error_data = 6;};
+//  oneof packet_data { HandshakeRequest handshake_request_data = 3; HandshakeResponse handshake_response_data = 4; PingPacket ping_data = 5; PongPacket pong_data = 6; ErrorPacket error_data = 7; AuthenticationRequestPacket auth_request_data = 8;};
+  optional bytes data = 3;
 }
 
 //    optional bool use_encryption = 4 [default = false];

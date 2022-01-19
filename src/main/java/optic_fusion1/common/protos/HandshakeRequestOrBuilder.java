@@ -8,11 +8,19 @@ public interface HandshakeRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * The clients protocol version
+   * </pre>
+   *
    * <code>required .ProtocolVersion protocol_version = 1;</code>
    * @return Whether the protocolVersion field is set.
    */
   boolean hasProtocolVersion();
   /**
+   * <pre>
+   * The clients protocol version
+   * </pre>
+   *
    * <code>required .ProtocolVersion protocol_version = 1;</code>
    * @return The protocolVersion.
    */

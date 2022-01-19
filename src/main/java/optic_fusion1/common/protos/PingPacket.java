@@ -8,27 +8,26 @@ package optic_fusion1.common.protos;
  * Client -&gt; Server
  * </pre>
  *
- * Protobuf type {@code HandshakeRequest}
+ * Protobuf type {@code PingPacket}
  */
-public final class HandshakeRequest extends
+public final class PingPacket extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:HandshakeRequest)
-    HandshakeRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:PingPacket)
+    PingPacketOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use HandshakeRequest.newBuilder() to construct.
-  private HandshakeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use PingPacket.newBuilder() to construct.
+  private PingPacket(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private HandshakeRequest() {
-    protocolVersion_ = 1;
-    rsaPublicKey_ = com.google.protobuf.ByteString.EMPTY;
+  private PingPacket() {
+    sessionId_ = "";
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new HandshakeRequest();
+    return new PingPacket();
   }
 
   @java.lang.Override
@@ -36,7 +35,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private HandshakeRequest(
+  private PingPacket(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -55,21 +54,10 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
-            int rawValue = input.readEnum();
-              @SuppressWarnings("deprecation")
-            optic_fusion1.common.protos.ProtocolVersion value = optic_fusion1.common.protos.ProtocolVersion.valueOf(rawValue);
-            if (value == null) {
-              unknownFields.mergeVarintField(1, rawValue);
-            } else {
-              bitField0_ |= 0x00000001;
-              protocolVersion_ = rawValue;
-            }
-            break;
-          }
           case 18: {
-            bitField0_ |= 0x00000002;
-            rsaPublicKey_ = input.readBytes();
+            com.google.protobuf.ByteString bs = input.readBytes();
+            bitField0_ |= 0x00000001;
+            sessionId_ = bs;
             break;
           }
           default: {
@@ -93,62 +81,64 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_HandshakeRequest_descriptor;
+    return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_PingPacket_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_HandshakeRequest_fieldAccessorTable
+    return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_PingPacket_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            optic_fusion1.common.protos.HandshakeRequest.class, optic_fusion1.common.protos.HandshakeRequest.Builder.class);
+            optic_fusion1.common.protos.PingPacket.class, optic_fusion1.common.protos.PingPacket.Builder.class);
   }
 
   private int bitField0_;
-  public static final int PROTOCOL_VERSION_FIELD_NUMBER = 1;
-  private int protocolVersion_;
+  public static final int SESSION_ID_FIELD_NUMBER = 2;
+  private volatile java.lang.Object sessionId_;
   /**
-   * <pre>
-   * The clients protocol version
-   * </pre>
-   *
-   * <code>required .ProtocolVersion protocol_version = 1;</code>
-   * @return Whether the protocolVersion field is set.
+   * <code>required string session_id = 2;</code>
+   * @return Whether the sessionId field is set.
    */
-  @java.lang.Override public boolean hasProtocolVersion() {
+  @java.lang.Override
+  public boolean hasSessionId() {
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <pre>
-   * The clients protocol version
-   * </pre>
-   *
-   * <code>required .ProtocolVersion protocol_version = 1;</code>
-   * @return The protocolVersion.
-   */
-  @java.lang.Override public optic_fusion1.common.protos.ProtocolVersion getProtocolVersion() {
-    @SuppressWarnings("deprecation")
-    optic_fusion1.common.protos.ProtocolVersion result = optic_fusion1.common.protos.ProtocolVersion.valueOf(protocolVersion_);
-    return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_1 : result;
-  }
-
-  public static final int RSA_PUBLIC_KEY_FIELD_NUMBER = 2;
-  private com.google.protobuf.ByteString rsaPublicKey_;
-  /**
-   * <code>required bytes rsa_public_key = 2;</code>
-   * @return Whether the rsaPublicKey field is set.
+   * <code>required string session_id = 2;</code>
+   * @return The sessionId.
    */
   @java.lang.Override
-  public boolean hasRsaPublicKey() {
-    return ((bitField0_ & 0x00000002) != 0);
+  public java.lang.String getSessionId() {
+    java.lang.Object ref = sessionId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      if (bs.isValidUtf8()) {
+        sessionId_ = s;
+      }
+      return s;
+    }
   }
   /**
-   * <code>required bytes rsa_public_key = 2;</code>
-   * @return The rsaPublicKey.
+   * <code>required string session_id = 2;</code>
+   * @return The bytes for sessionId.
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString getRsaPublicKey() {
-    return rsaPublicKey_;
+  public com.google.protobuf.ByteString
+      getSessionIdBytes() {
+    java.lang.Object ref = sessionId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      sessionId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -158,11 +148,7 @@ private static final long serialVersionUID = 0L;
     if (isInitialized == 1) return true;
     if (isInitialized == 0) return false;
 
-    if (!hasProtocolVersion()) {
-      memoizedIsInitialized = 0;
-      return false;
-    }
-    if (!hasRsaPublicKey()) {
+    if (!hasSessionId()) {
       memoizedIsInitialized = 0;
       return false;
     }
@@ -174,10 +160,7 @@ private static final long serialVersionUID = 0L;
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeEnum(1, protocolVersion_);
-    }
-    if (((bitField0_ & 0x00000002) != 0)) {
-      output.writeBytes(2, rsaPublicKey_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sessionId_);
     }
     unknownFields.writeTo(output);
   }
@@ -189,12 +172,7 @@ private static final long serialVersionUID = 0L;
 
     size = 0;
     if (((bitField0_ & 0x00000001) != 0)) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, protocolVersion_);
-    }
-    if (((bitField0_ & 0x00000002) != 0)) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(2, rsaPublicKey_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sessionId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -206,19 +184,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof optic_fusion1.common.protos.HandshakeRequest)) {
+    if (!(obj instanceof optic_fusion1.common.protos.PingPacket)) {
       return super.equals(obj);
     }
-    optic_fusion1.common.protos.HandshakeRequest other = (optic_fusion1.common.protos.HandshakeRequest) obj;
+    optic_fusion1.common.protos.PingPacket other = (optic_fusion1.common.protos.PingPacket) obj;
 
-    if (hasProtocolVersion() != other.hasProtocolVersion()) return false;
-    if (hasProtocolVersion()) {
-      if (protocolVersion_ != other.protocolVersion_) return false;
-    }
-    if (hasRsaPublicKey() != other.hasRsaPublicKey()) return false;
-    if (hasRsaPublicKey()) {
-      if (!getRsaPublicKey()
-          .equals(other.getRsaPublicKey())) return false;
+    if (hasSessionId() != other.hasSessionId()) return false;
+    if (hasSessionId()) {
+      if (!getSessionId()
+          .equals(other.getSessionId())) return false;
     }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -231,82 +205,78 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasProtocolVersion()) {
-      hash = (37 * hash) + PROTOCOL_VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + protocolVersion_;
-    }
-    if (hasRsaPublicKey()) {
-      hash = (37 * hash) + RSA_PUBLIC_KEY_FIELD_NUMBER;
-      hash = (53 * hash) + getRsaPublicKey().hashCode();
+    if (hasSessionId()) {
+      hash = (37 * hash) + SESSION_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionId().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(
+  public static optic_fusion1.common.protos.PingPacket parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(
+  public static optic_fusion1.common.protos.PingPacket parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(
+  public static optic_fusion1.common.protos.PingPacket parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(
+  public static optic_fusion1.common.protos.PingPacket parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(byte[] data)
+  public static optic_fusion1.common.protos.PingPacket parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(
+  public static optic_fusion1.common.protos.PingPacket parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(java.io.InputStream input)
+  public static optic_fusion1.common.protos.PingPacket parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(
+  public static optic_fusion1.common.protos.PingPacket parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseDelimitedFrom(java.io.InputStream input)
+  public static optic_fusion1.common.protos.PingPacket parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseDelimitedFrom(
+  public static optic_fusion1.common.protos.PingPacket parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(
+  public static optic_fusion1.common.protos.PingPacket parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static optic_fusion1.common.protos.HandshakeRequest parseFrom(
+  public static optic_fusion1.common.protos.PingPacket parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -319,7 +289,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(optic_fusion1.common.protos.HandshakeRequest prototype) {
+  public static Builder newBuilder(optic_fusion1.common.protos.PingPacket prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -339,26 +309,26 @@ private static final long serialVersionUID = 0L;
    * Client -&gt; Server
    * </pre>
    *
-   * Protobuf type {@code HandshakeRequest}
+   * Protobuf type {@code PingPacket}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:HandshakeRequest)
-      optic_fusion1.common.protos.HandshakeRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:PingPacket)
+      optic_fusion1.common.protos.PingPacketOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_HandshakeRequest_descriptor;
+      return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_PingPacket_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_HandshakeRequest_fieldAccessorTable
+      return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_PingPacket_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              optic_fusion1.common.protos.HandshakeRequest.class, optic_fusion1.common.protos.HandshakeRequest.Builder.class);
+              optic_fusion1.common.protos.PingPacket.class, optic_fusion1.common.protos.PingPacket.Builder.class);
     }
 
-    // Construct using optic_fusion1.common.protos.HandshakeRequest.newBuilder()
+    // Construct using optic_fusion1.common.protos.PingPacket.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -376,27 +346,25 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      protocolVersion_ = 1;
+      sessionId_ = "";
       bitField0_ = (bitField0_ & ~0x00000001);
-      rsaPublicKey_ = com.google.protobuf.ByteString.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000002);
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_HandshakeRequest_descriptor;
+      return optic_fusion1.common.protos.ChatRoomProtocol.internal_static_PingPacket_descriptor;
     }
 
     @java.lang.Override
-    public optic_fusion1.common.protos.HandshakeRequest getDefaultInstanceForType() {
-      return optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance();
+    public optic_fusion1.common.protos.PingPacket getDefaultInstanceForType() {
+      return optic_fusion1.common.protos.PingPacket.getDefaultInstance();
     }
 
     @java.lang.Override
-    public optic_fusion1.common.protos.HandshakeRequest build() {
-      optic_fusion1.common.protos.HandshakeRequest result = buildPartial();
+    public optic_fusion1.common.protos.PingPacket build() {
+      optic_fusion1.common.protos.PingPacket result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -404,18 +372,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public optic_fusion1.common.protos.HandshakeRequest buildPartial() {
-      optic_fusion1.common.protos.HandshakeRequest result = new optic_fusion1.common.protos.HandshakeRequest(this);
+    public optic_fusion1.common.protos.PingPacket buildPartial() {
+      optic_fusion1.common.protos.PingPacket result = new optic_fusion1.common.protos.PingPacket(this);
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         to_bitField0_ |= 0x00000001;
       }
-      result.protocolVersion_ = protocolVersion_;
-      if (((from_bitField0_ & 0x00000002) != 0)) {
-        to_bitField0_ |= 0x00000002;
-      }
-      result.rsaPublicKey_ = rsaPublicKey_;
+      result.sessionId_ = sessionId_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -455,21 +419,20 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof optic_fusion1.common.protos.HandshakeRequest) {
-        return mergeFrom((optic_fusion1.common.protos.HandshakeRequest)other);
+      if (other instanceof optic_fusion1.common.protos.PingPacket) {
+        return mergeFrom((optic_fusion1.common.protos.PingPacket)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(optic_fusion1.common.protos.HandshakeRequest other) {
-      if (other == optic_fusion1.common.protos.HandshakeRequest.getDefaultInstance()) return this;
-      if (other.hasProtocolVersion()) {
-        setProtocolVersion(other.getProtocolVersion());
-      }
-      if (other.hasRsaPublicKey()) {
-        setRsaPublicKey(other.getRsaPublicKey());
+    public Builder mergeFrom(optic_fusion1.common.protos.PingPacket other) {
+      if (other == optic_fusion1.common.protos.PingPacket.getDefaultInstance()) return this;
+      if (other.hasSessionId()) {
+        bitField0_ |= 0x00000001;
+        sessionId_ = other.sessionId_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -478,10 +441,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public final boolean isInitialized() {
-      if (!hasProtocolVersion()) {
-        return false;
-      }
-      if (!hasRsaPublicKey()) {
+      if (!hasSessionId()) {
         return false;
       }
       return true;
@@ -492,11 +452,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      optic_fusion1.common.protos.HandshakeRequest parsedMessage = null;
+      optic_fusion1.common.protos.PingPacket parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (optic_fusion1.common.protos.HandshakeRequest) e.getUnfinishedMessage();
+        parsedMessage = (optic_fusion1.common.protos.PingPacket) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -507,103 +467,86 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private int protocolVersion_ = 1;
+    private java.lang.Object sessionId_ = "";
     /**
-     * <pre>
-     * The clients protocol version
-     * </pre>
-     *
-     * <code>required .ProtocolVersion protocol_version = 1;</code>
-     * @return Whether the protocolVersion field is set.
+     * <code>required string session_id = 2;</code>
+     * @return Whether the sessionId field is set.
      */
-    @java.lang.Override public boolean hasProtocolVersion() {
+    public boolean hasSessionId() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <pre>
-     * The clients protocol version
-     * </pre>
-     *
-     * <code>required .ProtocolVersion protocol_version = 1;</code>
-     * @return The protocolVersion.
+     * <code>required string session_id = 2;</code>
+     * @return The sessionId.
      */
-    @java.lang.Override
-    public optic_fusion1.common.protos.ProtocolVersion getProtocolVersion() {
-      @SuppressWarnings("deprecation")
-      optic_fusion1.common.protos.ProtocolVersion result = optic_fusion1.common.protos.ProtocolVersion.valueOf(protocolVersion_);
-      return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_1 : result;
-    }
-    /**
-     * <pre>
-     * The clients protocol version
-     * </pre>
-     *
-     * <code>required .ProtocolVersion protocol_version = 1;</code>
-     * @param value The protocolVersion to set.
-     * @return This builder for chaining.
-     */
-    public Builder setProtocolVersion(optic_fusion1.common.protos.ProtocolVersion value) {
-      if (value == null) {
-        throw new NullPointerException();
+    public java.lang.String getSessionId() {
+      java.lang.Object ref = sessionId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          sessionId_ = s;
+        }
+        return s;
+      } else {
+        return (java.lang.String) ref;
       }
-      bitField0_ |= 0x00000001;
-      protocolVersion_ = value.getNumber();
-      onChanged();
-      return this;
     }
     /**
-     * <pre>
-     * The clients protocol version
-     * </pre>
-     *
-     * <code>required .ProtocolVersion protocol_version = 1;</code>
+     * <code>required string session_id = 2;</code>
+     * @return The bytes for sessionId.
+     */
+    public com.google.protobuf.ByteString
+        getSessionIdBytes() {
+      java.lang.Object ref = sessionId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>required string session_id = 2;</code>
+     * @param value The sessionId to set.
      * @return This builder for chaining.
      */
-    public Builder clearProtocolVersion() {
-      bitField0_ = (bitField0_ & ~0x00000001);
-      protocolVersion_ = 1;
-      onChanged();
-      return this;
-    }
-
-    private com.google.protobuf.ByteString rsaPublicKey_ = com.google.protobuf.ByteString.EMPTY;
-    /**
-     * <code>required bytes rsa_public_key = 2;</code>
-     * @return Whether the rsaPublicKey field is set.
-     */
-    @java.lang.Override
-    public boolean hasRsaPublicKey() {
-      return ((bitField0_ & 0x00000002) != 0);
-    }
-    /**
-     * <code>required bytes rsa_public_key = 2;</code>
-     * @return The rsaPublicKey.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getRsaPublicKey() {
-      return rsaPublicKey_;
-    }
-    /**
-     * <code>required bytes rsa_public_key = 2;</code>
-     * @param value The rsaPublicKey to set.
-     * @return This builder for chaining.
-     */
-    public Builder setRsaPublicKey(com.google.protobuf.ByteString value) {
+    public Builder setSessionId(
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-      rsaPublicKey_ = value;
+  bitField0_ |= 0x00000001;
+      sessionId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>required bytes rsa_public_key = 2;</code>
+     * <code>required string session_id = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearRsaPublicKey() {
-      bitField0_ = (bitField0_ & ~0x00000002);
-      rsaPublicKey_ = getDefaultInstance().getRsaPublicKey();
+    public Builder clearSessionId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      sessionId_ = getDefaultInstance().getSessionId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>required string session_id = 2;</code>
+     * @param value The bytes for sessionId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSessionIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+      sessionId_ = value;
       onChanged();
       return this;
     }
@@ -620,41 +563,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:HandshakeRequest)
+    // @@protoc_insertion_point(builder_scope:PingPacket)
   }
 
-  // @@protoc_insertion_point(class_scope:HandshakeRequest)
-  private static final optic_fusion1.common.protos.HandshakeRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:PingPacket)
+  private static final optic_fusion1.common.protos.PingPacket DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new optic_fusion1.common.protos.HandshakeRequest();
+    DEFAULT_INSTANCE = new optic_fusion1.common.protos.PingPacket();
   }
 
-  public static optic_fusion1.common.protos.HandshakeRequest getDefaultInstance() {
+  public static optic_fusion1.common.protos.PingPacket getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  @java.lang.Deprecated public static final com.google.protobuf.Parser<HandshakeRequest>
-      PARSER = new com.google.protobuf.AbstractParser<HandshakeRequest>() {
+  @java.lang.Deprecated public static final com.google.protobuf.Parser<PingPacket>
+      PARSER = new com.google.protobuf.AbstractParser<PingPacket>() {
     @java.lang.Override
-    public HandshakeRequest parsePartialFrom(
+    public PingPacket parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new HandshakeRequest(input, extensionRegistry);
+      return new PingPacket(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<HandshakeRequest> parser() {
+  public static com.google.protobuf.Parser<PingPacket> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<HandshakeRequest> getParserForType() {
+  public com.google.protobuf.Parser<PingPacket> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public optic_fusion1.common.protos.HandshakeRequest getDefaultInstanceForType() {
+  public optic_fusion1.common.protos.PingPacket getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

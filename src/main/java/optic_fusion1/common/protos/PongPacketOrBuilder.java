@@ -8,17 +8,6 @@ public interface PongPacketOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>required .ProtocolVersion server_protocol_version = 1;</code>
-   * @return Whether the serverProtocolVersion field is set.
-   */
-  boolean hasServerProtocolVersion();
-  /**
-   * <code>required .ProtocolVersion server_protocol_version = 1;</code>
-   * @return The serverProtocolVersion.
-   */
-  optic_fusion1.common.protos.ProtocolVersion getServerProtocolVersion();
-
-  /**
    * <code>required int32 connected_client_count = 2;</code>
    * @return Whether the connectedClientCount field is set.
    */

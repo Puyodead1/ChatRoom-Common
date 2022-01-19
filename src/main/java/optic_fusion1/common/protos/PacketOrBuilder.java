@@ -38,64 +38,21 @@ public interface PacketOrBuilder extends
   com.google.protobuf.ByteString getSignature();
 
   /**
-   * <code>.HandshakeRequest handshake_request_data = 3;</code>
-   * @return Whether the handshakeRequestData field is set.
+   * <pre>
+   *  oneof packet_data { HandshakeRequest handshake_request_data = 3; HandshakeResponse handshake_response_data = 4; PingPacket ping_data = 5; PongPacket pong_data = 6; ErrorPacket error_data = 7; AuthenticationRequestPacket auth_request_data = 8;};
+   * </pre>
+   *
+   * <code>optional bytes data = 3;</code>
+   * @return Whether the data field is set.
    */
-  boolean hasHandshakeRequestData();
+  boolean hasData();
   /**
-   * <code>.HandshakeRequest handshake_request_data = 3;</code>
-   * @return The handshakeRequestData.
+   * <pre>
+   *  oneof packet_data { HandshakeRequest handshake_request_data = 3; HandshakeResponse handshake_response_data = 4; PingPacket ping_data = 5; PongPacket pong_data = 6; ErrorPacket error_data = 7; AuthenticationRequestPacket auth_request_data = 8;};
+   * </pre>
+   *
+   * <code>optional bytes data = 3;</code>
+   * @return The data.
    */
-  optic_fusion1.common.protos.HandshakeRequest getHandshakeRequestData();
-  /**
-   * <code>.HandshakeRequest handshake_request_data = 3;</code>
-   */
-  optic_fusion1.common.protos.HandshakeRequestOrBuilder getHandshakeRequestDataOrBuilder();
-
-  /**
-   * <code>.HandshakeResponse handshake_response_data = 4;</code>
-   * @return Whether the handshakeResponseData field is set.
-   */
-  boolean hasHandshakeResponseData();
-  /**
-   * <code>.HandshakeResponse handshake_response_data = 4;</code>
-   * @return The handshakeResponseData.
-   */
-  optic_fusion1.common.protos.HandshakeResponse getHandshakeResponseData();
-  /**
-   * <code>.HandshakeResponse handshake_response_data = 4;</code>
-   */
-  optic_fusion1.common.protos.HandshakeResponseOrBuilder getHandshakeResponseDataOrBuilder();
-
-  /**
-   * <code>.PongPacket pong_data = 5;</code>
-   * @return Whether the pongData field is set.
-   */
-  boolean hasPongData();
-  /**
-   * <code>.PongPacket pong_data = 5;</code>
-   * @return The pongData.
-   */
-  optic_fusion1.common.protos.PongPacket getPongData();
-  /**
-   * <code>.PongPacket pong_data = 5;</code>
-   */
-  optic_fusion1.common.protos.PongPacketOrBuilder getPongDataOrBuilder();
-
-  /**
-   * <code>.ErrorPacket error_data = 6;</code>
-   * @return Whether the errorData field is set.
-   */
-  boolean hasErrorData();
-  /**
-   * <code>.ErrorPacket error_data = 6;</code>
-   * @return The errorData.
-   */
-  optic_fusion1.common.protos.ErrorPacket getErrorData();
-  /**
-   * <code>.ErrorPacket error_data = 6;</code>
-   */
-  optic_fusion1.common.protos.ErrorPacketOrBuilder getErrorDataOrBuilder();
-
-  public optic_fusion1.common.protos.Packet.PacketDataCase getPacketDataCase();
+  com.google.protobuf.ByteString getData();
 }

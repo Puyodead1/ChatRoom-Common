@@ -11,7 +11,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class RSAUtils {
     public static KeyPair generateRsaKeyPair() throws NoSuchAlgorithmException, NoSuchProviderException {
-        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DSA", "SUN");
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
         keyGen.initialize(1024, random);
 
@@ -29,7 +29,7 @@ public class RSAUtils {
         privateKeyInputStream.read(encodedPrivKey);
         privateKeyInputStream.close();
 
-        KeyFactory factory = KeyFactory.getInstance("DSA");
+        KeyFactory factory = KeyFactory.getInstance("RSA");
         X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(encodedPubKey);
         PublicKey publicKey = factory.generatePublic(publicKeySpec);
 
@@ -58,13 +58,20 @@ public class RSAUtils {
     }
 
     public static PublicKey getPublicKeyFromBytes(byte[] encodedPublicKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        KeyFactory factory = KeyFactory.getInstance("DSA");
+        KeyFactory factory = KeyFactory.getInstance("RSA");
         X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(encodedPublicKey);
         return factory.generatePublic(publicKeySpec);
     }
 
+    public static byte[] generateSignature(byte[] data, PrivateKey privateKey) throws SignatureException, InvalidKeyException, NoSuchAlgorithmException, NoSuchProviderException {
+        Signature rsa = Signature.getInstance("SHA1withRSA");
+        rsa.initSign(privateKey);
+        rsa.update(data);
+        return rsa.sign();
+    }
+
     public static boolean verifySignature(byte[] signature, PublicKey publicKey, byte[] data) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, SignatureException {
-        Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
+        Signature sig = Signature.getInstance("SHA1withRSA");
         sig.initVerify(publicKey);
         sig.update(data);
         return sig.verify(signature);

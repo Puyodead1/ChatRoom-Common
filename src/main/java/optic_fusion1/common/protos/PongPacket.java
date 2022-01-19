@@ -20,7 +20,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private PongPacket() {
-    serverProtocolVersion_ = 1;
   }
 
   @java.lang.Override
@@ -54,20 +53,8 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
-            int rawValue = input.readEnum();
-              @SuppressWarnings("deprecation")
-            optic_fusion1.common.protos.ProtocolVersion value = optic_fusion1.common.protos.ProtocolVersion.valueOf(rawValue);
-            if (value == null) {
-              unknownFields.mergeVarintField(1, rawValue);
-            } else {
-              bitField0_ |= 0x00000001;
-              serverProtocolVersion_ = rawValue;
-            }
-            break;
-          }
           case 16: {
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             connectedClientCount_ = input.readInt32();
             break;
           }
@@ -104,25 +91,6 @@ private static final long serialVersionUID = 0L;
   }
 
   private int bitField0_;
-  public static final int SERVER_PROTOCOL_VERSION_FIELD_NUMBER = 1;
-  private int serverProtocolVersion_;
-  /**
-   * <code>required .ProtocolVersion server_protocol_version = 1;</code>
-   * @return Whether the serverProtocolVersion field is set.
-   */
-  @java.lang.Override public boolean hasServerProtocolVersion() {
-    return ((bitField0_ & 0x00000001) != 0);
-  }
-  /**
-   * <code>required .ProtocolVersion server_protocol_version = 1;</code>
-   * @return The serverProtocolVersion.
-   */
-  @java.lang.Override public optic_fusion1.common.protos.ProtocolVersion getServerProtocolVersion() {
-    @SuppressWarnings("deprecation")
-    optic_fusion1.common.protos.ProtocolVersion result = optic_fusion1.common.protos.ProtocolVersion.valueOf(serverProtocolVersion_);
-    return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_1 : result;
-  }
-
   public static final int CONNECTED_CLIENT_COUNT_FIELD_NUMBER = 2;
   private int connectedClientCount_;
   /**
@@ -131,7 +99,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasConnectedClientCount() {
-    return ((bitField0_ & 0x00000002) != 0);
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
    * <code>required int32 connected_client_count = 2;</code>
@@ -149,10 +117,6 @@ private static final long serialVersionUID = 0L;
     if (isInitialized == 1) return true;
     if (isInitialized == 0) return false;
 
-    if (!hasServerProtocolVersion()) {
-      memoizedIsInitialized = 0;
-      return false;
-    }
     if (!hasConnectedClientCount()) {
       memoizedIsInitialized = 0;
       return false;
@@ -165,9 +129,6 @@ private static final long serialVersionUID = 0L;
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeEnum(1, serverProtocolVersion_);
-    }
-    if (((bitField0_ & 0x00000002) != 0)) {
       output.writeInt32(2, connectedClientCount_);
     }
     unknownFields.writeTo(output);
@@ -180,10 +141,6 @@ private static final long serialVersionUID = 0L;
 
     size = 0;
     if (((bitField0_ & 0x00000001) != 0)) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, serverProtocolVersion_);
-    }
-    if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, connectedClientCount_);
     }
@@ -202,10 +159,6 @@ private static final long serialVersionUID = 0L;
     }
     optic_fusion1.common.protos.PongPacket other = (optic_fusion1.common.protos.PongPacket) obj;
 
-    if (hasServerProtocolVersion() != other.hasServerProtocolVersion()) return false;
-    if (hasServerProtocolVersion()) {
-      if (serverProtocolVersion_ != other.serverProtocolVersion_) return false;
-    }
     if (hasConnectedClientCount() != other.hasConnectedClientCount()) return false;
     if (hasConnectedClientCount()) {
       if (getConnectedClientCount()
@@ -222,10 +175,6 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasServerProtocolVersion()) {
-      hash = (37 * hash) + SERVER_PROTOCOL_VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + serverProtocolVersion_;
-    }
     if (hasConnectedClientCount()) {
       hash = (37 * hash) + CONNECTED_CLIENT_COUNT_FIELD_NUMBER;
       hash = (53 * hash) + getConnectedClientCount();
@@ -367,10 +316,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      serverProtocolVersion_ = 1;
-      bitField0_ = (bitField0_ & ~0x00000001);
       connectedClientCount_ = 0;
-      bitField0_ = (bitField0_ & ~0x00000002);
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
 
@@ -400,12 +347,8 @@ private static final long serialVersionUID = 0L;
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        to_bitField0_ |= 0x00000001;
-      }
-      result.serverProtocolVersion_ = serverProtocolVersion_;
-      if (((from_bitField0_ & 0x00000002) != 0)) {
         result.connectedClientCount_ = connectedClientCount_;
-        to_bitField0_ |= 0x00000002;
+        to_bitField0_ |= 0x00000001;
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -456,9 +399,6 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(optic_fusion1.common.protos.PongPacket other) {
       if (other == optic_fusion1.common.protos.PongPacket.getDefaultInstance()) return this;
-      if (other.hasServerProtocolVersion()) {
-        setServerProtocolVersion(other.getServerProtocolVersion());
-      }
       if (other.hasConnectedClientCount()) {
         setConnectedClientCount(other.getConnectedClientCount());
       }
@@ -469,9 +409,6 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public final boolean isInitialized() {
-      if (!hasServerProtocolVersion()) {
-        return false;
-      }
       if (!hasConnectedClientCount()) {
         return false;
       }
@@ -498,49 +435,6 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private int serverProtocolVersion_ = 1;
-    /**
-     * <code>required .ProtocolVersion server_protocol_version = 1;</code>
-     * @return Whether the serverProtocolVersion field is set.
-     */
-    @java.lang.Override public boolean hasServerProtocolVersion() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
-    /**
-     * <code>required .ProtocolVersion server_protocol_version = 1;</code>
-     * @return The serverProtocolVersion.
-     */
-    @java.lang.Override
-    public optic_fusion1.common.protos.ProtocolVersion getServerProtocolVersion() {
-      @SuppressWarnings("deprecation")
-      optic_fusion1.common.protos.ProtocolVersion result = optic_fusion1.common.protos.ProtocolVersion.valueOf(serverProtocolVersion_);
-      return result == null ? optic_fusion1.common.protos.ProtocolVersion.VERSION_1 : result;
-    }
-    /**
-     * <code>required .ProtocolVersion server_protocol_version = 1;</code>
-     * @param value The serverProtocolVersion to set.
-     * @return This builder for chaining.
-     */
-    public Builder setServerProtocolVersion(optic_fusion1.common.protos.ProtocolVersion value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      bitField0_ |= 0x00000001;
-      serverProtocolVersion_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>required .ProtocolVersion server_protocol_version = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearServerProtocolVersion() {
-      bitField0_ = (bitField0_ & ~0x00000001);
-      serverProtocolVersion_ = 1;
-      onChanged();
-      return this;
-    }
-
     private int connectedClientCount_ ;
     /**
      * <code>required int32 connected_client_count = 2;</code>
@@ -548,7 +442,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasConnectedClientCount() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return ((bitField0_ & 0x00000001) != 0);
     }
     /**
      * <code>required int32 connected_client_count = 2;</code>
@@ -564,7 +458,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setConnectedClientCount(int value) {
-      bitField0_ |= 0x00000002;
+      bitField0_ |= 0x00000001;
       connectedClientCount_ = value;
       onChanged();
       return this;
@@ -574,7 +468,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearConnectedClientCount() {
-      bitField0_ = (bitField0_ & ~0x00000002);
+      bitField0_ = (bitField0_ & ~0x00000001);
       connectedClientCount_ = 0;
       onChanged();
       return this;
